@@ -1,106 +1,46 @@
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier League Fan Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
 
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+     {% load static %}
+     <link rel="stylesheet" type="text/css" href="{% static 'Dashboard/style.css' %}" />
+    </head>
+    <body> 
+        <div>
+           <ul>
+            <li> <a href="/">Home</a></li>
+            <li><a>Contact</a></li>
+            <li><a>About us</a></li>
+           </ul>
+        </div>  
+        
 
-        nav {
-            background-color: #444;
-            overflow: hidden;
-        }
+        {% for result in jsonResponse %}
+        
+        <div class="container">
+            <div class="app">
 
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
+                <div class="header">
 
-        section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 8px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+                <span class="team team-left">
+                    <span class="name">{{ result.match_hometeam_name }}</span>
+                </span>
 
-        .user-info {
-            text-align: right;
-            color: #555;
-        }
+                <span class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</span>
 
-        .settings-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+                <span class="team team-right">
+                    <span class="name">{{ result.match_awayteam_name }}</span>
+                </span>
 
-        .dashboard-section {
-            width: calc(33.33% - 20px);
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
+                </div>
+                
+            </div>
+        </div>    
 
-    <header>
-        <h1>Premier League Fan Dashboard</h1>
-    </header>
-
-    <nav>
-        <a href="#leaguetable">League Table</a>
-        <a href="#topscorer">Top Scorer</a>
-        <a href="#currentsquad">Current Squad</a>
-        <a href="#teamformation">Team Formation</a>
-        <a href="#favoriteteam">Favorite Team</a>
-        <div class="user-info">
-            <span>User Name</span>
-            <button class="settings-btn">Settings</button>
-        </div>
-    </nav>
-
-    <section id="leaguetable" class="dashboard-section">
-        <h2>League Table</h2>
-    </section>
-
-    <section id="topscorer" class="dashboard-section">
-        <h2>Top Scorer</h2>
-    </section>
-
-    <section id="currentsquad" class="dashboard-section">
-        <h2>Current Squad</h2>
-    </section>
-
-    <section id="teamformation" class="dashboard-section">
-        <h2>Team Formation</h2>
-    </section>
-
-    <section id="favoriteteam" class="dashboard-section">
-        <h2>Favorite Team</h2>
-    </section>
-
-</body>
+       {% endfor %} 
+    </body>
 </html>
