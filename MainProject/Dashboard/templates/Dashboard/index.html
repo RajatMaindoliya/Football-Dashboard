@@ -1,50 +1,82 @@
-
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
 
-     {% load static %}
-     <link rel="stylesheet" type="text/css" href="{% static 'Dashboard/style.css' %}" />
-    </head>
-    <body> 
-        <div>
-           <ul>
-            <li> <a href="/">Home</a></li>
-            <li><a>Contact</a></li>
-            <li><a>About us</a></li>
-           </ul>
-        </div>  
-        
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Dashboard/style.css' %}" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a>Contact</a></li>
+                <li><a>About us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% for result in jsonResponse %}
+        <div class="match-container">
+            <h2 style="text-align:center">Latest Match</h2>
+            <div class="match">
+                <div class="teams">
+                    <div class="team team-left">
+                        <img src="{{ result.team_home_badge }}" alt="{{ result.match_hometeam_name }} Badge">
+                        <span class="name">{{ result.match_hometeam_name }}</span>
+                    </div>
+
+                    <div class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</div>
+
+                    <div class="team team-right">
+                        <img src="{{ result.team_away_badge }}" alt="{{ result.match_awayteam_name }} Badge">
+                        <span class="name">{{ result.match_awayteam_name }}</span>
+                    </div>
+                </div>
+
+                <div class="league-name">{{ result.league_name }}</div>
+            </div>
+        </div>
 
         {% for result in jsonResponse %}
-        
-        <div class="container">
-            <div class="app" style="height: 120px;">
-
-                <div class="header" style="padding-top: 10px">
-
-                <span class="team team-left">
-                    <img src="{{ result.team_home_badge }}" style="width:20px"/>
-                    <span class="name">{{ result.match_hometeam_name }}</span>
-                </span>
-
-                <span class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</span>
-
-                <span class="team team-right">
-                    <img src="{{ result.team_away_badge }}" style="width:20px"/>
-                    <span class="name">{{ result.match_awayteam_name }}</span>
-                </span>
-
-                <div style="clear: both; width: 100%; text-align: center; font-size:15px; margin-top:50px">{{ result.league_name }}</div>
-
+        <div class="match-container">
+            <div class="match">
+                <div class="teams">
+                    <!-- Display home team lineup -->
+                    <div class="team team-left">
+                        <h3>{{ result.match_hometeam_name }} Lineup</h3>
+                        <ul>
+                            {% for player in result.lineup.home.starting_lineups %}
+                                <li>{{ player.lineup_player }} - {{ player.lineup_position }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+    
+                    <!-- Display away team lineup -->
+                    <div class="team team-right">
+                        <h3>{{ result.match_awayteam_name }} Lineup</h3>
+                        <ul>
+                            {% for player in result.lineup.away.starting_lineups %}
+                                <li>{{ player.lineup_player }} - {{ player.lineup_position }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
-                
+    
+                <div class="league-name">{{ result.league_name }}</div>
             </div>
-        </div>    
+        </div>
+       {% endfor %}
 
-       {% endfor %} 
-    </body>
+
+        {% endfor %}
+    </main>
+</body>
+
 </html>
