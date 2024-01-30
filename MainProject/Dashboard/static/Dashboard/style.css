@@ -1,3 +1,4 @@
+/* Reset and General Styling */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -5,6 +6,7 @@ body {
   background-color: #f0f0f0;
 }
 
+/* Header Styling */
 header {
   background-color: #333333;
 }
@@ -33,6 +35,7 @@ nav a {
   text-align: center;
 }
 
+/* Main Section Styling */
 main {
   display: flex;
   flex-wrap: wrap;
@@ -40,12 +43,11 @@ main {
   padding: 20px;
 }
 
+/* Match Container Styling */
 .match-container {
-  width: 300px;
+  width: calc(33.33% - 30px); 
+  max-width: 300px; 
   margin: 15px;
-}
-
-.match {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -53,6 +55,7 @@ main {
   text-align: center;
 }
 
+/* Team Styling */
 .teams {
   display: flex;
   justify-content: space-between;
@@ -65,10 +68,11 @@ main {
 }
 
 .team img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: 50%;
+  margin-right: 8px;
 }
 
 .team span.name {
@@ -92,11 +96,10 @@ main {
   color: #777;
 }
 
-/* Add this to your existing CSS file */
-
+/* Team Lineup Styling */
 .team-left,
 .team-right {
-  width: 48%; /* Adjust the width as needed */
+  width: 48%;
 }
 
 .team h3 {
@@ -116,19 +119,24 @@ main {
   color: #555;
 }
 
-.team img {
-  width: 30px; /* Adjust the size as needed */
-  height: 30px; /* Adjust the size as needed */
-  margin-right: 8px;
-}
-
 .team span.name {
-  font-size: 12px; /* Adjust the size as needed */
+  font-size: 12px;
   margin-top: 0;
 }
 
-/* Optional: Add some spacing between the match containers */
+/* Optional Styling */
 .match-container {
   margin-bottom: 20px;
 }
 
+.league-table {
+  width: 100%; 
+  max-width: 600px; 
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.table_badge {
+  width: 30px; 
+  height: 30px; 
+}

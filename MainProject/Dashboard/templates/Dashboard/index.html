@@ -22,7 +22,40 @@
     </header>
 
     <main>
-        {% for result in jsonResponse %}
+        <div class="league-table">
+            <h2>Premier League Standings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th>Played</th>
+                        <th>Wins</th>
+                        <th>Draws</th>
+                        <th>Losses</th>
+                        <th>Goals For</th>
+                        <th>Goals Against</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in standings_data %}
+                    <tr>
+                        <td>{{ team.overall_league_position }}</td>
+                        <td><img class="table_badge" src="{{ team.team_badge }}" alt="{{ team.team_name }} Badge"> {{ team.team_name }}</td>
+                        <td>{{ team.overall_league_payed }}</td>
+                        <td>{{ team.overall_league_W }}</td>
+                        <td>{{ team.overall_league_D }}</td>
+                        <td>{{ team.overall_league_L }}</td>
+                        <td>{{ team.overall_league_GF }}</td>
+                        <td>{{ team.overall_league_GA }}</td>
+                        <td>{{ team.overall_league_PTS }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% for result in events_data %}
         <div class="match-container">
             <h2 style="text-align:center">Latest Match</h2>
             <div class="match">
@@ -44,7 +77,7 @@
             </div>
         </div>
 
-        {% for result in jsonResponse %}
+        {% for result in events_data %}
         <div class="match-container">
             <div class="match">
                 <div class="teams">
@@ -73,9 +106,8 @@
             </div>
         </div>
        {% endfor %}
-
-
         {% endfor %}
+            <!-- League Table -->
     </main>
 </body>
 
