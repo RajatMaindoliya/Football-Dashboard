@@ -1,90 +1,164 @@
-  ul{ 
-    list-style-type:none;
-    margin: 0;
-    padding:0;
-    overflow:hidden;
-    background-color: #333;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-  }
+/* Reset and General Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+}
 
-  li{
-    float: left;
-    border-right:1px solid #bbb;
-  }
+h2 {
+  text-align: center;
+}
 
-  li:last-child{
-    border-right:none;
-  }
+/* Header Styling */
+header {
+  background-color: #333333;
+}
 
-  li a{
-    display: block;
-    color: white;
-    text-decoration:none;
-    padding:14px 16px;
-    text-align:center;
-  }
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
-  .container{
-    width:360px;
-    margin: 15px auto;
-    margin-top: 60px;
-  }
+nav li {
+  float: left;
+  border-right: 1px solid #555;
+}
 
-  .app{
-    width: 360px;
-    height: 40px;
-    background-color: #f8f8f8;
-    border-left: 11px solid #036493;
-    border-right: 11px solid #e89e81;
-    box-shadow: 0 60px 45px -50px rgba(0,0,0,0.25),
-                0 -50px 45px -50px rgba(0,0,0,0.25);
-  }
+nav li:last-child {
+  border-right: none;
+}
 
-  div.header{
-    position: relative;
-    width: 100%;
-    height: 140px;
-  }
+nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+  text-align: center;
+}
 
-  span.team{
-    position: relative;
-    width: 45%;
-    display: inline-block;
-    text-align: center;
-  }
+/* Main Section Styling */
+main {
+  display: flex;
+  padding: 20px;
+}
 
-  span.team-left{
-    float: left;
-  }
+/* Match Container Styling */
+.match-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
 
-  span.team-right{
-    float: right;
-  }
+/* Team Styling */
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
-  span.team span.name{
-    width: 70%;
-    display: block;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: rgba(0,0,0,0.8);
-    padding: 5% 15% 0% 15%;
-  }
+.team {
+  flex: 1;
+}
 
-  span.score{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    left:0;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: rgba(0,0,0,0.8);
-    line-height: 40px;;
-  }
+.team img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.team span.name {
+  display: block;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-top: 5px;
+}
+
+.score {
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  margin: 10px 0;
+}
+
+.league-name {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Team Lineup Styling */
+.team-left,
+.team-right {
+  width: 48%;
+}
+
+.team h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.team ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.team li {
+  margin-bottom: 3px;
+  font-size: 12px;
+  color: #555;
+}
+
+.team span.name {
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.league-table { 
+  max-width: 400px; 
+  padding: 20px;
+  border-collapse: collapse;
+}
+
+.table_badge {
+  width: 30px; 
+  height: 30px; 
+}
+
+.table_title {
+  padding-right: 20px;
+}
+
+.league-table-container {
+  max-height: 500px; 
+  overflow-y: auto; 
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: fit-content;
+  padding: 20px;
+}
+
+.league-table th,
+.league-table td {
+    padding: 4px;
+}
+
+.lineup-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
