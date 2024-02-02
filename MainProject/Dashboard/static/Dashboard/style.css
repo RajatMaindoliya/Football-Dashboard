@@ -1,9 +1,11 @@
 /* Reset and General Styling */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
   background-color: #f0f0f0;
+}
+
+h2 {
+  text-align: center;
 }
 
 /* Header Styling */
@@ -38,21 +40,18 @@ nav a {
 /* Main Section Styling */
 main {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   padding: 20px;
 }
 
 /* Match Container Styling */
 .match-container {
-  width: calc(33.33% - 30px); 
-  max-width: 300px; 
-  margin: 15px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   text-align: center;
+  margin-bottom: 15px;
+  margin-right: 15px;
 }
 
 /* Team Styling */
@@ -114,29 +113,52 @@ main {
 }
 
 .team li {
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 3px;
+  font-size: 12px;
   color: #555;
 }
 
 .team span.name {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 0;
 }
 
-/* Optional Styling */
-.match-container {
-  margin-bottom: 20px;
-}
-
-.league-table {
-  width: 100%; 
-  max-width: 600px; 
-  margin: 0 auto;
+.league-table { 
+  max-width: 400px; 
   padding: 20px;
+  border-collapse: collapse;
 }
 
 .table_badge {
   width: 30px; 
   height: 30px; 
+}
+
+.table_title {
+  padding-right: 20px;
+}
+
+.league-table-container {
+  max-height: 500px; 
+  overflow-y: auto; 
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: fit-content;
+  padding: 20px;
+}
+
+.league-table th,
+.league-table td {
+    padding: 4px;
+}
+
+.lineup-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-right: 15px;
 }
