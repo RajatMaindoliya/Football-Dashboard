@@ -27,41 +27,57 @@
      
         <div class="col-6">  
 
-            {% for result in events_data %}
-            <div class="match-container">
-                <h2>Latest Match</h2>
-                <div class="match">
+            <div class="row">
+                <div class="col-6">
+                    {% for result in events_data %}
+                    <div class="match-container">
+                        <h2>Latest Match</h2>
 
-                    <div class="teams">
-                        <div class="team team-left">
-                            <img src="{{ result.team_home_badge }}" alt="{{ result.match_hometeam_name }} Badge">
-                            <span class="name">{{ result.match_hometeam_name }}</span>
-                        </div>
+                            <div class="teams">
+                                <div class="team team-left">
+                                    <img src="{{ result.team_home_badge }}" alt="{{ result.match_hometeam_name }} Badge">
+                                    <span class="name">{{ result.match_hometeam_name }}</span>
+                                </div>
 
-                        <div class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</div>
+                                <div class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</div>
 
-                        <div class="team team-right">
-                            <img src="{{ result.team_away_badge }}" alt="{{ result.match_awayteam_name }} Badge">
-                            <span class="name">{{ result.match_awayteam_name }}</span>
-                        </div>
+                                <div class="team team-right">
+                                    <img src="{{ result.team_away_badge }}" alt="{{ result.match_awayteam_name }} Badge">
+                                    <span class="name">{{ result.match_awayteam_name }}</span>
+                                </div>
+                            </div>
+
+                            <div class="league-name">{{ result.league_name }}</div>
+
                     </div>
-
-                    <div class="league-name">{{ result.league_name }}</div>
-
                 </div>
+
+                <div class="col-6">
+                    <div class="stats-container">
+                        <h2>Top Scorer</h2>
+                        
+                            <p>
+                                <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
+                                <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
+                            </p>
+                        
+                    </div>
+                </div>
+
             </div>
+
 
             {% for result in events_data %}
         
             <div class="lineup-container">
-                <div class="match">
+                
                     <div class="teams">
                         <!-- Display home team lineup -->
                         <div class="team team-left">
                             <h3>{{ result.match_hometeam_name }} Lineup</h3>
                             <ul>
                                 {% for player in result.lineup.home.starting_lineups %}
-                                    <li>{{ player.lineup_player }} - {{ player.lineup_position }}</li>
+                                    <li>{{ player.lineup_player }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -71,16 +87,16 @@
                             <h3>{{ result.match_awayteam_name }} Lineup</h3>
                             <ul>
                                 {% for player in result.lineup.away.starting_lineups %}
-                                    <li>{{ player.lineup_player }} - {{ player.lineup_position }}</li>
+                                    <li>{{ player.lineup_player }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
                     </div>
-                </div>
+                
             </div>
            {% endfor %}
             {% endfor %}
-
+           
         </div>
 
 
