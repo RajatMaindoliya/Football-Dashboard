@@ -3,6 +3,7 @@ from . forms import CreateUserForm, LoginForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from Dashboard.views import display_dashboard
 
 @login_required(login_url="login")
 def homepage(request):
@@ -41,7 +42,7 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 
-                return redirect("dashboard")
+                return display_dashboard(request)
             
     context = {'loginform': form}
         

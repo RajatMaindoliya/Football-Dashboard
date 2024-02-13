@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime
 import requests
 
-def index(request):
+def display_dashboard(request):
     # Make API call to fetch league standings data
     standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
     standings_response = requests.get(standings_url)
@@ -23,4 +23,4 @@ def index(request):
     topScorer_data = topScorer_response.json()
 
     
-    return render(request, 'Dashboard/index.html', {'standings_data': standings_data, 'events_data': events_data, 'topScorer_data': topScorer_data})
+    return render(request, 'Dashboard/dashboard.html', {'standings_data': standings_data, 'events_data': events_data, 'topScorer_data': topScorer_data})
