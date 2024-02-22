@@ -13,7 +13,7 @@ def display_dashboard(request):
     today = datetime.today().strftime('%y-%m-%d')
     
     # make API call to get events data
-    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-01-22&to=2024-01-22&league_id=152&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
+    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-02-15&to=2024-02-22&league_id=152&team_id=102&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
     events_response = requests.get(events_url)
     events_data = events_response.json() #turning the text result into json (array)
     
