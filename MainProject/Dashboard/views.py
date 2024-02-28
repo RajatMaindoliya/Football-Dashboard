@@ -24,3 +24,12 @@ def display_dashboard(request):
 
     
     return render(request, 'Dashboard/dashboard.html', {'standings_data': standings_data, 'events_data': events_data, 'topScorer_data': topScorer_data})
+
+
+def display_topscorer_list(request):
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
+    topScorer_response = requests.get(topScorer_url)
+    topScorer_data = topScorer_response.json()
+    
+    return render(request, 'Dashboard/topscorer.html', {'topScorer_data': topScorer_data})
+

@@ -53,15 +53,15 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="stats-container">
-                        <h2>Top Scorer</h2>
-                        
-                            <p>
-                                <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
-                                <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
-                            </p>
-                        
-                    </div>
+                    
+                        <div class="stats-container">
+                            <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
+                                <p>
+                                    <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
+                                    <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
+                                </p>
+                        </div>
+                   
                 </div>
 
             </div>
