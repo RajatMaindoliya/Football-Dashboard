@@ -1,5 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
 <html>
+<head> 
+    <title>FootData</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .images-container {
+            max-width: 1000px;
+            height: auto;
+            width: 100%;
+            margin: 42px auto;
+            display: flex;
+            max-height: fit-content;
+        }
 
-    <h1>This is the homepage </h1>
+        .images-container .img-fluid {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: all 400ms;
+            max-width: 100%;
+            border: 2px solid white;
+        }
 
+        .images-container .image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .images-container .description {
+            position: absolute;
+            bottom: -180px;
+            background-color: #222;
+            color: aliceblue;
+            padding: 8px 16px;
+            box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: all 400ms;
+        }
+
+        .images-container .description h1 {
+            color: aqua;
+            font-family: monospace;
+        }
+
+        .images-container .image:hover .description {
+            opacity: 1;
+            bottom: 0;
+        }
+
+        .images-container .image:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body style="background-color: rgb(252, 249, 249);">
+    <div class="container-fluid">
+        
+        <div class="row" style="display: flex; justify-content: left; margin-top: 5px; margin-bottom: 5px; ">
+            <div class="col-1">
+                <img src="{% static 'Authentication/logo.jpg' %}" class="img-fluid" style="height: 80px; max-width: fit-content;">
+            </div>
+            <div class="col-11" style="margin-top: 20px; font-family: monospace;">
+                <h2>"Football Data for free"</h2>
+            </div>
+        </div>
+
+        <div class="row" style="display: flex; background-color: black;">
+            <div class="images-container">
+                <div class="image">
+                    <a href="{% url 'register' %}">
+                        <img src="{% static 'Authentication/pitch.jpg' %}" class="img-fluid">
+                    </a>
+                    <div class="description">
+                        <h1>Registration</h1>
+                        <p style="font-size: large;">"Join our football community by registering for access to premium content"</p>
+                    </div>
+                </div>
+
+                <div class="image">
+                    <a href="{% url 'login' %}">
+                         <img src="{% static 'Authentication/player.jpg' %}" class="img-fluid">
+                    </a>
+                    <div class="description">
+                        <h1>Login</h1>
+                        <p style="font-size: large;">"Access exclusive football data with secure and convenient login services"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
 </html>
