@@ -5,7 +5,7 @@ import requests
 
 def display_dashboard(request):
     # Make API call to fetch league standings data
-    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
+    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
     standings_response = requests.get(standings_url)
     standings_data = standings_response.json()
     
@@ -13,12 +13,12 @@ def display_dashboard(request):
     today = datetime.today().strftime('%y-%m-%d')
     
     # make API call to get events data
-    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-02-15&to=2024-02-22&league_id=152&team_id=102&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
+    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-02-15&to=2024-02-22&league_id=152&team_id=102&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
     events_response = requests.get(events_url)
     events_data = events_response.json() #turning the text result into json (array)
     
     # Make API call to get top scorer data
-    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
 
@@ -27,7 +27,7 @@ def display_dashboard(request):
 
 
 def display_topscorer_list(request):
-    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=99c096fc17be683fe159341eb603465beca42fd6fe0df1843e51191b47f67d1d"
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
     
