@@ -17,22 +17,22 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a>Contact</a></li>
-                <li><a>About us</a></li>
+                <li><a href="{% url 'dashboard' %}">Home</a></li>
+                <li><a href="/">Stats</a></li>
+                <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
+                <li><a href="/">AI Predictor</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
      
-        <div class="col-6">  
+        <div class="col-3">  
 
             <div class="row">
-                <div class="col-6">
+                
                     {% for result in events_data %}
                     <div class="match-container">
-                        <h2>Latest Match</h2>
 
                             <div class="teams">
                                 <div class="team team-left">
@@ -51,60 +51,18 @@
                             <div class="league-name">{{ result.league_name }}</div>
 
                     </div>
-                </div>
-
-                <div class="col-6">
-                    
-                        <div class="stats-container">
-                            <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
-                                <p>
-                                    <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
-                                    <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
-                                </p>
-                        </div>
                    
-                </div>
+       
 
             </div>
 
-
-            {% for result in events_data %}
-        
-            <div class="lineup-container">
-                
-                    <div class="teams">
-                        <!-- Display home team lineup -->
-                        <div class="team team-left">
-                            <h3>{{ result.match_hometeam_name }} Lineup</h3>
-                            <ul>
-                                {% for player in result.lineup.home.starting_lineups %}
-                                    <li>{{ player.lineup_player }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-        
-                        <!-- Display away team lineup -->
-                        <div class="team team-right">
-                            <h3>{{ result.match_awayteam_name }} Lineup</h3>
-                            <ul>
-                                {% for player in result.lineup.away.starting_lineups %}
-                                    <li>{{ player.lineup_player }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                
-            </div>
-           {% endfor %}
             {% endfor %}
            
         </div>
 
-
-       <div class="col-6">
+        <div class="col-6">
             <div class="league-table-container">
                 <div style="margin-left: 20px; margin-right: 20px">
-                <h2>Premier League Standings</h2>
                 <table class="league-table">
                     <thead>
                         <tr>
@@ -137,6 +95,17 @@
                 </table>
                 </div> 
             </div>
+        </div>
+
+
+       <div class="col-3" style="padding: 10px;">
+        <div class="stats-container">
+            <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
+                <p>
+                    <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
+                    <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
+                </p>
+        </div>
        </div> 
 
     </main> 

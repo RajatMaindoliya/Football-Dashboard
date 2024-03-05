@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixtures</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Dashboard/style.css' %}" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Home</a></li>
+                <li><a href="/">Stats</a></li>
+                <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
+                <li><a href="/">AI Predictor</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    
+        <div>            
+            {% for result in fixtures_data %}
+            <div class="match-container">
+
+                    <div class="teams">
+                        <div class="team team-left">
+                            <img src="{{ result.team_home_badge }}" alt="{{ result.match_hometeam_name }} Badge">
+                            <span class="name">{{ result.match_hometeam_name }}</span>
+                        </div>
+
+                        <div class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</div>
+
+                        <div class="team team-right">
+                            <img src="{{ result.team_away_badge }}" alt="{{ result.match_awayteam_name }} Badge">
+                            <span class="name">{{ result.match_awayteam_name }}</span>
+                        </div>
+                    </div>
+
+                    <div class="league-name">{{ result.league_name }}</div>
+
+            </div>
+
+            {% endfor %}
+        </div>    
+
+    </main>
+       
+    
+
+
+
+</body>
+</html>
