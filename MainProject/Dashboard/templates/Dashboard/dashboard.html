@@ -27,7 +27,10 @@
 
     <main>
      
-        <div class="col-3">  
+        <div class="col-3" style="margin-left:5px;">  
+            <div clas="row" style="background-color: aquamarine; margin-top:20px; margin-bottom:20px width:100px;">
+                <h2>Latest Match</h2>
+            </div>
 
             <div class="row">
                 
@@ -61,52 +64,62 @@
         </div>
 
         <div class="col-6">
-            <div class="league-table-container">
-                <div style="margin-left: 20px; margin-right: 20px">
-                <table class="league-table">
-                    <thead>
-                        <tr>
-                            <th>Position</th>
-                            <th>Team</th>
-                            <th>Played</th>
-                            <th>Wins</th>
-                            <th>Draws</th>
-                            <th>Losses</th>
-                            <th>Goals For</th>
-                            <th>Goals Against</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for team in standings_data %}
-                        <tr>
-                            <td>{{ team.overall_league_position }}</td>
-                            <td class="table_title"><img class="table_badge" src="{{ team.team_badge }}" alt="{{ team.team_name }} Badge"> {{ team.team_name }}</td>
-                            <td>{{ team.overall_league_payed }}</td>
-                            <td>{{ team.overall_league_W }}</td>
-                            <td>{{ team.overall_league_D }}</td>
-                            <td>{{ team.overall_league_L }}</td>
-                            <td>{{ team.overall_league_GF }}</td>
-                            <td>{{ team.overall_league_GA }}</td>
-                            <td>{{ team.overall_league_PTS }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                </div> 
+            <div class="row" style="background-color: aquamarine; margin:10px">
+                <h2>League table</h2>
+            </div>
+            <div class="row">
+                <div class="league-table-container">
+                    <div style="margin-left: 20px; margin-right: 20px">
+                        <table class="league-table">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Team</th>
+                                    <th>Played</th>
+                                    <th>Wins</th>
+                                    <th>Draws</th>
+                                    <th>Losses</th>
+                                    <th>Goals For</th>
+                                    <th>Goals Against</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for team in standings_data %}
+                                <tr>
+                                    <td>{{ team.overall_league_position }}</td>
+                                    <td class="table_title"><img class="table_badge" src="{{ team.team_badge }}" alt="{{ team.team_name }} Badge"> {{ team.team_name }}</td>
+                                    <td>{{ team.overall_league_payed }}</td>
+                                    <td>{{ team.overall_league_W }}</td>
+                                    <td>{{ team.overall_league_D }}</td>
+                                    <td>{{ team.overall_league_L }}</td>
+                                    <td>{{ team.overall_league_GF }}</td>
+                                    <td>{{ team.overall_league_GA }}</td>
+                                    <td>{{ team.overall_league_PTS }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
             </div>
         </div>
 
 
-       <div class="col-3" style="padding: 10px;">
-        <div class="stats-container">
-            <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
-                <p>
-                    <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
-                    <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
-                </p>
-        </div>
-       </div> 
+        <div class="col-3" style="margin-left:10px;">
+            <div class="row" style="margin:20px; background-color: aquamarine;">
+                <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
+            </div>
+
+            <div class="row">
+                <div class="stats-container">
+                        <p>
+                            <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
+                            <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
+                        </p>
+                </div>
+            </div>
+        </div> 
 
     </main> 
 </body>
