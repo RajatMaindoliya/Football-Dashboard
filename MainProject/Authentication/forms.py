@@ -4,6 +4,33 @@ from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 
 class CreateUserForm(UserCreationForm):
+    
+    # Define the choices for teams
+    TEAM_CHOICES = [
+        ('141', 'Arsenal'),
+        ('3088', 'Aston Villa FC'),
+        ('3071', 'Bournemouth AFC'),
+        ('3086', 'Brentford'),
+        ('3079', 'Brighton & Hove Albion'),
+        ('3075', 'Burnley'),
+        ('88', 'Chelsea'),
+        ('3429', 'Crystal Palace'),
+        ('3073', 'Everton FC'),
+        ('3085', 'Fulham'),
+        ('84', 'Liverpool FC'),
+        ('3091', 'Luton Town'),
+        ('80', 'Manchester City FC'),
+        ('102', 'Manchester United FC'),
+        ('3100', 'Newcastle United'),
+        ('3089', 'Nottingham Forest'),
+        ('3074', 'Sheffield United'),
+        ('164', 'Tottenham Hotspur FC'),
+        ('3081', 'West Ham United'),
+        ('3077', 'Wolverhampton Wanderers'),
+    ]
+    
+    team_name = forms.ChoiceField(choices=TEAM_CHOICES)
+    
     class Meta:
         model = CustomUser  # Change User to CustomUser
         fields = ['username', 'email', 'password1', 'password2', 'team_name']  # Include your custom field here
