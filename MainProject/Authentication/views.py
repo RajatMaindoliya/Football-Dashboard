@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from Dashboard.views import display_dashboard
 
-@login_required(login_url="login")
 def homepage(request):
     
     return render(request, 'Authentication/index.html')
