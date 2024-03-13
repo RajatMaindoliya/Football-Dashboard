@@ -107,6 +107,23 @@
 
 
         <div class="col-3" style="margin-left:10px;">
+
+            <div class="row" style="margin:20px; background-color: aquamarine; border-radius: 10px;">
+                <h2>Your team</h2>
+            </div>
+        
+            <div class="row">
+                {% for team in favouriteTeam_data %}
+                    <div class="team-container">
+                        <img src="{{ team.team_badge|safe }}" alt="{{ team.team_name }} Badge" class="team-badge">
+                        <span class="team-name">{{ team.team_name }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+
             <div class="row" style="margin:20px; background-color: aquamarine; border-radius: 10px;">
                 <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
             </div>
@@ -119,6 +136,7 @@
                         </p>
                 </div>
             </div>
+
         </div> 
 
     </main> 
