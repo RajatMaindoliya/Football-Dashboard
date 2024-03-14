@@ -32,29 +32,31 @@
      
         <div class="col-3" style="margin-left:5px;">  
             <div class="row" style="background-color: cyan; margin-top:20px; margin-bottom:20px; width:100%; border-radius: 10px;">
-                <h2>Latest Match</h2>
+                <h4>Latest Match</h4>
             </div>
         
             <div class="row">
                 {% if events_data %}
                 {% with latest_match=events_data|last %}
-                <div class="match-container">
-                    <div class="teams">
-                        <div class="team team-left">
-                            <img src="{{ latest_match.team_home_badge }}" alt="{{ latest_match.match_hometeam_name }} Badge">
-                            <span class="name">{{ latest_match.match_hometeam_name }}</span>
+                <a href="{% url 'match_details' latest_match.match_id %}">
+                    <div class="match-container">
+                        <div class="teams">
+                            <div class="team team-left">
+                                <img src="{{ latest_match.team_home_badge }}" alt="{{ latest_match.match_hometeam_name }} Badge">
+                                <span class="name">{{ latest_match.match_hometeam_name }}</span>
+                            </div>
+        
+                            <div class="score">{{ latest_match.match_hometeam_ft_score }} - {{ latest_match.match_awayteam_ft_score }}</div>
+        
+                            <div class="team team-right">
+                                <img src="{{ latest_match.team_away_badge }}" alt="{{ latest_match.match_awayteam_name }} Badge">
+                                <span class="name">{{ latest_match.match_awayteam_name }}</span>
+                            </div>
                         </div>
         
-                        <div class="score">{{ latest_match.match_hometeam_ft_score }} - {{ latest_match.match_awayteam_ft_score }}</div>
-        
-                        <div class="team team-right">
-                            <img src="{{ latest_match.team_away_badge }}" alt="{{ latest_match.match_awayteam_name }} Badge">
-                            <span class="name">{{ latest_match.match_awayteam_name }}</span>
-                        </div>
+                        <div class="league-name">{{ latest_match.league_name }}</div>
                     </div>
-        
-                    <div class="league-name">{{ latest_match.league_name }}</div>
-                </div>
+                </a>
                 {% endwith %}
                 {% else %}
                 <p>No matches available</p>
@@ -64,10 +66,11 @@
         
         
         
+        
 
         <div class="col-6">
             <div class="row" style="background-color: cyan; margin:10px; border-radius: 10px;">
-                <h2>League table</h2>
+                <h4>League table</h4>
             </div>
             <div class="row">
                 <div class="league-table-container">
@@ -111,7 +114,7 @@
         <div class="col-3" style="margin-left:10px;">
 
             <div class="row" style="margin:20px; background-color: cyan; border-radius: 10px;">
-                <h2>Your team</h2>
+                <h4>Your team</h4>
             </div>
         
             <div class="row">
@@ -127,7 +130,7 @@
 
 
             <div class="row" style="margin:20px; background-color: cyan; border-radius: 10px;">
-                <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
+                <a href="{% url 'topscorer' %}"> <h4>Top Scorer</h4>  </a>
             </div>
 
             <div class="row">
