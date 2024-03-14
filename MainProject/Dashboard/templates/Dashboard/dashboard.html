@@ -15,12 +15,15 @@
 <body>
    
     <header>
-        <nav>
-            <ul>
+        <nav style="display: flex; justify-content: space-between;">
+            <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
                 <li><a href="{% url 'dashboard' %}">Home</a></li>
                 <li><a href="{% url 'topscorer' %}">Stats</a></li>
                 <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
                 <li><a href="/">AI Predictor</a></li>
+            </ul>
+            <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
+                <li><a href="{% url 'logout' %}" style="padding: 8px 12px; background-color: #007bff; margin-top:5px; margin-right:5px; color: #fff; border: none; border-radius: 4px; text-decoration: none;">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -28,44 +31,46 @@
     <main>
      
         <div class="col-3" style="margin-left:5px;">  
-            <div clas="row" style="background-color: aquamarine; margin-top:20px; margin-bottom:20px width:100px; border-radius: 10px;">
-                <h2>Latest Match</h2>
+            <div class="row" style="background-color: cyan; margin-top:20px; margin-bottom:20px; width:100%; border-radius: 10px;">
+                <h4>Latest Match</h4>
             </div>
-
+        
             <div class="row">
-                
-                    {% for result in events_data %}
+                {% if events_data %}
+                {% with latest_match=events_data|last %}
+                <a href="{% url 'match_details' latest_match.match_id %}">
                     <div class="match-container">
-
-                            <div class="teams">
-                                <div class="team team-left">
-                                    <img src="{{ result.team_home_badge }}" alt="{{ result.match_hometeam_name }} Badge">
-                                    <span class="name">{{ result.match_hometeam_name }}</span>
-                                </div>
-
-                                <div class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</div>
-
-                                <div class="team team-right">
-                                    <img src="{{ result.team_away_badge }}" alt="{{ result.match_awayteam_name }} Badge">
-                                    <span class="name">{{ result.match_awayteam_name }}</span>
-                                </div>
+                        <div class="teams">
+                            <div class="team team-left">
+                                <img src="{{ latest_match.team_home_badge }}" alt="{{ latest_match.match_hometeam_name }} Badge">
+                                <span class="name">{{ latest_match.match_hometeam_name }}</span>
                             </div>
-
-                            <div class="league-name">{{ result.league_name }}</div>
-
+        
+                            <div class="score">{{ latest_match.match_hometeam_ft_score }} - {{ latest_match.match_awayteam_ft_score }}</div>
+        
+                            <div class="team team-right">
+                                <img src="{{ latest_match.team_away_badge }}" alt="{{ latest_match.match_awayteam_name }} Badge">
+                                <span class="name">{{ latest_match.match_awayteam_name }}</span>
+                            </div>
+                        </div>
+        
+                        <div class="league-name">{{ latest_match.league_name }}</div>
                     </div>
-                   
-       
-
+                </a>
+                {% endwith %}
+                {% else %}
+                <p>No matches available</p>
+                {% endif %}
             </div>
-
-            {% endfor %}
-           
         </div>
+        
+        
+        
+        
 
         <div class="col-6">
-            <div class="row" style="background-color: aquamarine; margin:10px; border-radius: 10px;">
-                <h2>League table</h2>
+            <div class="row" style="background-color: cyan; margin:10px; border-radius: 10px;">
+                <h4>League table</h4>
             </div>
             <div class="row">
                 <div class="league-table-container">
@@ -108,8 +113,8 @@
 
         <div class="col-3" style="margin-left:10px;">
 
-            <div class="row" style="margin:20px; background-color: aquamarine; border-radius: 10px;">
-                <h2>Your team</h2>
+            <div class="row" style="margin:20px; background-color: cyan; border-radius: 10px;">
+                <h4>Your team</h4>
             </div>
         
             <div class="row">
@@ -124,8 +129,8 @@
 
 
 
-            <div class="row" style="margin:20px; background-color: aquamarine; border-radius: 10px;">
-                <a href="{% url 'topscorer' %}"> <h2>Top Scorer</h2>  </a>
+            <div class="row" style="margin:20px; background-color: cyan; border-radius: 10px;">
+                <a href="{% url 'topscorer' %}"> <h4>Top Scorer</h4>  </a>
             </div>
 
             <div class="row">

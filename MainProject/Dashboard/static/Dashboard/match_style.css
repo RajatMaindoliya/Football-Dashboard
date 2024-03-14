@@ -1,0 +1,122 @@
+header {
+    background-color: black;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  nav li {
+    float: left;
+    border-right: 1px solid #555;
+  }
+  
+  nav li:last-child {
+    border-right: none;
+  }
+  
+  nav a {
+    display: block;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+/* match_details_style.css */
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.match-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.team-logo-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 15%;
+}
+
+.team-logo-card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.team-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 40%;
+}
+
+.team-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.statistics-card {
+    margin-bottom: 20px;
+}
+
+.statistics-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.statistics-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.statistics-card ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.shooting-statistics-card {
+    margin-bottom: 20px;
+}
+
+.shooting-statistics-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.shooting-statistics-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.shooting-statistics-card ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Media Query for Responsive Design */
+@media only screen and (max-width: 768px) {
+    .match-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-logo-card,
+    .team-section {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}

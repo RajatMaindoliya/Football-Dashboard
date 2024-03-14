@@ -25,9 +25,11 @@ def display_dashboard(request):
     standings_data = standings_response.json()
     
     # make API call to get events data
-    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-02-15&to=2024-02-22&league_id=152&team_id=102&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
+    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-01-05&to="+today_formatted+"&team_id="+favourite_team+"&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
     events_response = requests.get(events_url)
     events_data = events_response.json() #turning the text result into json (array)
+    
+    latest_match_id = events_data[-1]['match_id']
     
     # Make API call to get top scorer data
     topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
@@ -56,5 +58,11 @@ def display_fixtures(request):
     fixtures_data = fixtures_response.json()
     
     return render(request, 'Dashboard/fixtures.html', {'fixtures_data': fixtures_data})
+
+def display_match_details(request, match_id):
+    match_details_url = "https://apiv3.apifootball.com/?action=get_events&match_id="+match_id+"&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
+    match_details_response = requests.get(match_details_url)
+    match_details_data = match_details_response.json()
+    return render(request, 'Dashboard/match_details.html', {'match_details_data': match_details_data})
 
     
