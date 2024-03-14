@@ -1,0 +1,72 @@
+body {
+    font-family: monospace;
+    background-color: #f0f0f0;
+  }
+
+main {
+    display: flex;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* Header Styling */
+header {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width:100%;
+    z-index:100
+  }
+  
+  nav {
+    display:flex;
+    justify-content: space-between;
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  nav li {
+    float: left;
+    border-right: 1px solid #555;
+  }
+  
+  nav li:last-child {
+    border-right: none;
+  }
+  
+  nav a {
+    display: block;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  h4 {
+    text-align: center;
+    color: black;
+    font-family: monospace;
+  }
+
+  p {
+    margin-left:10px;
+  }
+  
+  .team-logo {
+    width: 120px;
+    height: 120px;
+}
+
+.team-logo-container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    margin-top:20px;
+}
+
+.col-2 {
+    height: 100vh; /* Set height to 100% of viewport height */
+}
