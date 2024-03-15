@@ -65,4 +65,10 @@ def display_match_details(request, match_id):
     match_details_data = match_details_response.json()
     return render(request, 'Dashboard/match_details.html', {'match_details_data': match_details_data})
 
+def display_team_details(request, team_id):
+    team_details_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+team_id+"&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
+    team_details_response = requests.get(team_details_url)
+    team_details_data = team_details_response.json()
+    return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
+
     

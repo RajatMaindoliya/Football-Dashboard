@@ -93,7 +93,11 @@
                                 {% for team in standings_data %}
                                 <tr>
                                     <td>{{ team.overall_league_position }}</td>
-                                    <td class="table_title"><img class="table_badge" src="{{ team.team_badge }}" alt="{{ team.team_name }} Badge"> {{ team.team_name }}</td>
+                                    <td class="table_title">
+                                        <a href="{% url 'team_details' team.team_id %}">
+                                            <img class="table_badge" src="{{ team.team_badge }}" alt="{{ team.team_name }} Badge"> {{ team.team_name }}
+                                        </a>
+                                    </td>
                                     <td>{{ team.overall_league_payed }}</td>
                                     <td>{{ team.overall_league_W }}</td>
                                     <td>{{ team.overall_league_D }}</td>

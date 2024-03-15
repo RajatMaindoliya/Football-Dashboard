@@ -7,4 +7,5 @@ urlpatterns = [
     path('topscorer', views.display_topscorer_list, name='topscorer'),
     path('fixtures', views.display_fixtures, name='fixtures'),
     path('match_details/<str:match_id>/', views.display_match_details, name='match_details'),
+    path('team_details/<str:team_id>/', views.display_team_details, name='team_details'),
 ]
