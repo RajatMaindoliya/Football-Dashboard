@@ -1,0 +1,48 @@
+/* Header Styling */
+header {
+    background-color: cyan;
+    padding: 10px 0; /* Add some padding for better spacing */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav li {
+    display: inline; /* Instead of floating */
+    margin-right: 10px; /* Add some spacing between menu items */
+}
+
+header nav li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+header nav a {
+    text-decoration: none;
+    padding: 10px 16px; /* Adjust padding for better spacing */
+    color: #000; /* Change text color */
+}
+
+/* Fix for the navbar color issue */
+header nav a:hover {
+    background-color: cyan; /* Match the navbar background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+/* Styles for the stats page content */
+.stats-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
