@@ -11,7 +11,7 @@ main {
 
 /* Header Styling */
 header {
-    background-color: black;
+    background-color: cyan;
     position: fixed;
     top: 0;
     width:100%;
@@ -70,3 +70,26 @@ header {
 .col-2 {
     height: 100vh; /* Set height to 100% of viewport height */
 }
+
+.players-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-height: 600px;
+  overflow-y: auto; 
+}
+
+.players-container::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+
+  a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+  }
+  
+  a:hover {
+    text-decoration: none; /* Remove underline on hover */
+  }

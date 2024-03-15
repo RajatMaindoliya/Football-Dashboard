@@ -29,7 +29,7 @@
     </header>
 
     <main>
-        <div class="col-2" style="background-color:cyan;">
+        <div class="col-2" style="background-color:cyan; border-radius: 10px;">
             <div class="row">
                 <div class="team-logo-container">
                     <!-- Display Team Logo -->
@@ -66,8 +66,23 @@
             </div>
         </div>
     
-        <div class="col-10">
-            <!-- Additional content for col-10 if needed -->
+        <div class="col-10" style="margin-left: 20px">
+            <div class="players-container">
+                <h2>Players</h2>
+                <div class="row">
+                    {% for player in team_details_data.0.players %}
+                    <div class="col-4">
+                        {% if player.player_image %}
+                            <img src="{{ player.player_image }}">
+                        {% else %}
+                            <img src="{% static 'Dashboard/default.jpg' %}" alt="Default Avatar">
+                        {% endif %}
+                        <p>{{ player.player_name }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </main>
 </body>
