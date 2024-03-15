@@ -2,79 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Scorers</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            counter-reset: player-counter;
-        }
-        li {
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 40px; /* Added padding to create space for numbers */
-        }
-        li::before {
-            content: counter(player-counter);
-            counter-increment: player-counter;
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        .back-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: aquamarine;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Stats</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'Dashboard/stats.css' %}" />
 </head>
 <body>
-    <div class="container">
-        <a href="{% url 'dashboard' %}" class="back-button">Back</a>
-        <h1>Top Scorers</h1>
-        <ul>
-            {% for player in topScorer_data %}
-            <li>
-                <strong>{{ player.player_name }}</strong> - 
-                Team: {{ player.team_name }} | 
-                Goals: {{ player.goals }} | 
-                Assists: {{ player.assists }} | 
-                Penalty Goals: {{ player.penalty_goals }}
-            </li>
-            {% endfor %}
+<header class="header-container">
+    <nav style="display: flex; justify-content: space-between;">
+        <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
+            <li><a href="{% url 'dashboard' %}">Home</a></li>
+            <li><a href="{% url 'topscorer' %}">Stats</a></li>
+            <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
+            <li><a href="/">AI Predictor</a></li>
         </ul>
-    </div>
+        <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
+            <li><a href="{% url 'logout' %}" style="padding: 8px 12px; background-color: #007bff; margin-top:5px; margin-right:5px; color: #fff; border: none; border-radius: 4px; text-decoration: none;">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="stats-container">
+    <!-- Add a canvas element for the chart -->
+    <canvas id="goals-chart"></canvas>
+
+</div>
+
+<!-- Add the chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JavaScript code to render the chart -->
+<script>
+    // Get the data from Django context
+    var teamNames = {{ team_names|safe }};
+    var goalsForData = {{ goals_for|safe }};
+    var goalsAgainstData = {{ goals_against|safe }};
+
+    // Render the chart
+    var ctx = document.getElementById('goals-chart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: teamNames,
+            datasets: [{
+                label: 'Goals For',
+                data: goalsForData,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Goals Against',
+                data: goalsAgainstData,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 </html>

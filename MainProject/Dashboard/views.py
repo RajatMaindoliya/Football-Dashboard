@@ -50,7 +50,22 @@ def display_topscorer_list(request):
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
     
-    return render(request, 'Dashboard/topscorer.html', {'topScorer_data': topScorer_data})
+    # Make API call to fetch league standings data
+    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
+    standings_response = requests.get(standings_url)
+    standings_data = standings_response.json()
+    
+    # Prepare data for the composite bar chart
+    team_names = [team['team_name'] for team in standings_data]
+    goals_for = [team['overall_league_GF'] for team in standings_data]
+    goals_against = [team['overall_league_GA'] for team in standings_data]
+    
+    return render(request, 'Dashboard/topscorer.html', {
+        'team_names': team_names,
+        'goals_for': goals_for,
+        'goals_against': goals_against,
+        'topScorer_data': topScorer_data,
+    })
 
 def display_fixtures(request):
     fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from="+week_ago_formatted+"&to="+today_formatted+"&league_id=152&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"

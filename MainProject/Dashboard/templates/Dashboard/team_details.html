@@ -74,8 +74,6 @@
                     <div class="col-4">
                         {% if player.player_image %}
                             <img src="{{ player.player_image }}">
-                        {% else %}
-                            <img src="{% static 'Dashboard/default.jpg' %}" alt="Default Avatar">
                         {% endif %}
                         <p>{{ player.player_name }}</p>
                     </div>

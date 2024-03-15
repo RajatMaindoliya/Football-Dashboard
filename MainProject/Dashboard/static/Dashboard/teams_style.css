@@ -12,39 +12,40 @@ main {
 /* Header Styling */
 header {
     background-color: cyan;
-    position: fixed;
-    top: 0;
-    width:100%;
-    z-index:100
-  }
-  
-  nav {
-    display:flex;
-    justify-content: space-between;
-  }
+    padding: 10px 0; /* Add some padding for better spacing */
+}
 
-  nav ul {
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-  }
-  
-  nav li {
-    float: left;
-    border-right: 1px solid #555;
-  }
-  
-  nav li:last-child {
-    border-right: none;
-  }
-  
-  nav a {
-    display: block;
+}
+
+header nav li {
+    display: inline; /* Instead of floating */
+    margin-right: 10px; /* Add some spacing between menu items */
+}
+
+header nav li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+header nav a {
     text-decoration: none;
-    padding: 14px 16px;
-    text-align: center;
-  }
+    padding: 10px 16px; /* Adjust padding for better spacing */
+    color: #000; /* Change text color */
+}
+
+/* Fix for the navbar color issue */
+header nav a:hover {
+    background-color: cyan; /* Match the navbar background color on hover */
+    color: #fff; /* Change text color on hover */
+}
 
   h4 {
     text-align: center;
