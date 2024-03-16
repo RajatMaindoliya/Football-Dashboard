@@ -35,6 +35,17 @@ header nav a:hover {
     color: #fff; /* Change text color on hover */
 }
 
+.team span.name {
+    font-size: 15px;
+    margin-top: 0;
+  }
+
+.score {
+    font-size: 18px;
+    font-weight: 600;
+    color: #555;
+    margin: 10px 0;
+  }
 
 /* match_details_style.css */
 
@@ -47,25 +58,33 @@ body {
 }
 
 .match-details {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  background-color: aquamarine;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  margin:auto;
+  width: 400px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .team-logo-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 55%;
-    display: flex; 
-    justify-content: space-around; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.team-left,
+.team-right {
+  width: 38%;
 }
 
 .team-logo-card img {
     display: block;
     margin: 0 auto;
-    max-width: 100px;
+    max-width: 60px;
     margin-bottom: 10px;
 }
 
@@ -103,4 +122,6 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
 }

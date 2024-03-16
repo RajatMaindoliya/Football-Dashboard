@@ -38,29 +38,42 @@
             <div class="row">
                 {% if events_data %}
                 {% with latest_match=events_data|last %}
-                <a href="{% url 'match_details' latest_match.match_id %}">
+                    {% if latest_match.match_status == "Finished" %}
+                        <a href="{% url 'match_details' latest_match.match_id %}">
+                    {% endif %}
                     <div class="match-container">
                         <div class="teams">
                             <div class="team team-left">
                                 <img src="{{ latest_match.team_home_badge }}" alt="{{ latest_match.match_hometeam_name }} Badge">
                                 <span class="name">{{ latest_match.match_hometeam_name }}</span>
                             </div>
-        
+            
                             <div class="score">{{ latest_match.match_hometeam_ft_score }} - {{ latest_match.match_awayteam_ft_score }}</div>
-        
+            
                             <div class="team team-right">
                                 <img src="{{ latest_match.team_away_badge }}" alt="{{ latest_match.match_awayteam_name }} Badge">
                                 <span class="name">{{ latest_match.match_awayteam_name }}</span>
                             </div>
                         </div>
-        
-                        <div class="league-name">{{ latest_match.league_name }}</div>
+                        <div class="match-info">
+                            <div class="league-name">{{ latest_match.league_name }}</div>
+                            <div class="match-date">
+                                {% if latest_match.match_status == "Postponed" %}
+                                    <p class="match-status">Postponed</p>
+                                {% else %}
+                                    <p class="match-status">{{ latest_match.match_date }} - {{ latest_match.match_time }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                </a>
+                    {% if latest_match.match_status == "Finished" %}
+                        </a>
+                    {% endif %}
                 {% endwith %}
-                {% else %}
+            {% else %}
                 <p>No matches available</p>
-                {% endif %}
+            {% endif %}
+            
             </div>
         </div>
         

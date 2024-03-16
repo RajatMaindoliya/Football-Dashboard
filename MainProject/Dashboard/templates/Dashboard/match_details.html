@@ -31,21 +31,37 @@
 
 
     <main>
+
         {% if match_details_data %}
         <div class="match-details">
             <div class="team-logo-card">
-                <img src="{{ match_details_data.0.team_home_badge }}" alt="Home Team Logo">
-                <img src="{{ match_details_data.0.team_away_badge }}" alt="Away Team Logo">
+                <div class="team team-left">
+                    <img src="{{ match_details_data.0.team_home_badge }}" alt="Home Team Logo">
+                    <span class="name">{{ match_details_data.0.match_hometeam_name }}</span>
+                </div>
+
+                <div class="score">{{ match_details_data.0.match_hometeam_ft_score }} - {{ match_details_data.0.match_awayteam_ft_score }}</div>
+
+                <div class="team team-right">
+                    <img src="{{ match_details_data.0.team_away_badge }}" alt="Away Team Logo">
+                    <span class="name">{{ match_details_data.0.match_awayteam_name }}</span>
+                </div>
+                
+            </div>
+
+            <div class="match-info">
+                <p>Date: {{ match_details_data.0.match_date }}</p>
+                <p>Time: {{ match_details_data.0.match_time }}</p>
             </div>
         </div>
 
-
-
+    
         <!-- Add canvas for pie chart -->
         <div class="piechart-container">
+            <h4>Total Shots</h4>
             <canvas id="shotsPieChart" width="400" height="400"></canvas>
         </div>
-
+    
         {% else %}
         <p>No match details available.</p>
         {% endif %}
