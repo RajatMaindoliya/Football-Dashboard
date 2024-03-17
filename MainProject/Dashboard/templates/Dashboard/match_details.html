@@ -106,44 +106,97 @@
             <h4>Total Shots</h4>
             <canvas id="shotsPieChart" width="400" height="400"></canvas>
         </div>
+
+        <!-- Ball Possession Pie Chart -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Ball Possession</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Debugging Information -->
+                    {% for stat in match_details_data.0.statistics %}
+                        {% if stat.type == 'Ball Possession' %}
+                            <p>Home: {{ stat.home }}, Away: {{ stat.away }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <!-- Chart Canvas -->
+                    <canvas id="ballPossessionChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
     
         {% else %}
         <p>No match details available.</p>
         {% endif %}
+    
+
+        <!-- Include Chart.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- JavaScript code for rendering charts -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Extracting data for total shots
+                var shotsHome = {{ match_details_data.0.statistics.10.home }};
+                var shotsAway = {{ match_details_data.0.statistics.10.away }};
+
+                // Drawing the total shots pie chart
+                var shotsCtx = document.getElementById('shotsPieChart').getContext('2d');
+                var shotsPieChart = new Chart(shotsCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Shots',
+                            data: [shotsHome, shotsAway],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Red color for home team
+                                'rgba(54, 162, 235, 0.5)', // Blue color for away team
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total Shots Comparison'
+                        }
+                    }
+                });
+
+                // Extracting data for ball possession
+                var possessionHome = {{ match_details_data.0.statistics.9.home }};
+                var possessionAway = {{ match_details_data.0.statistics.9.away }};
+
+                // Drawing the ball possession pie chart
+                var possessionCtx = document.getElementById('ballPossessionChart').getContext('2d');
+                var possessionPieChart = new Chart(possessionCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Ball Possession',
+                            data: [possessionHome, possessionAway],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Red color for home team
+                                'rgba(54, 162, 235, 0.5)', // Blue color for away team
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Ball Possession Comparison'
+                        }
+                    }
+                });
+            });
+        </script>
     </main>
-
-    <!-- Include Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        // Extracting data
-        var shotsHome = {{ match_details_data.0.statistics.10.home }};
-        var shotsAway = {{ match_details_data.0.statistics.10.away }};
-
-        // Drawing the pie chart
-        var ctx = document.getElementById('shotsPieChart').getContext('2d');
-        var myPieChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Home Team', 'Away Team'],
-                datasets: [{
-                    label: 'Total Shots',
-                    data: [shotsHome, shotsAway],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)', // Red color for home team
-                        'rgba(54, 162, 235, 0.5)', // Blue color for away team
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Total Shots Comparison'
-                }
-            }
-        });
-    </script>
+    
 </body>
 
 </html>
