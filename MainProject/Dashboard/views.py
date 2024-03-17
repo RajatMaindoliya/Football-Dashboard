@@ -78,7 +78,15 @@ def display_match_details(request, match_id):
     match_details_url = "https://apiv3.apifootball.com/?action=get_events&match_id="+match_id+"&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
     match_details_response = requests.get(match_details_url)
     match_details_data = match_details_response.json()
-    return render(request, 'Dashboard/match_details.html', {'match_details_data': match_details_data})
+    
+    home_team_id = match_details_data[0]["match_hometeam_id"]
+    away_team_id = match_details_data[0]["match_awayteam_id"]
+    
+    h2h_url = "https://apiv3.apifootball.com/?action=get_H2H&firstTeamId="+home_team_id+"&secondTeamId="+away_team_id+"&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"
+    h2h_response = requests.get(h2h_url)
+    h2h_data = h2h_response.json()
+    
+    return render(request, 'Dashboard/match_details.html', {'match_details_data': match_details_data, 'h2h_data': h2h_data})
 
 def display_team_details(request, team_id):
     team_details_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+team_id+"&APIkey=13a784d9a73d9914e594fe99be25adc491c307684840f6fa89be23ba2206fa06"

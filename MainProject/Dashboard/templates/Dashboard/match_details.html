@@ -31,28 +31,73 @@
 
 
     <main>
+        <div class="row">
+            <div class="col-3">
 
-        {% if match_details_data %}
-        <div class="match-details">
-            <div class="team-logo-card">
-                <div class="team team-left">
-                    <img src="{{ match_details_data.0.team_home_badge }}" alt="Home Team Logo">
-                    <span class="name">{{ match_details_data.0.match_hometeam_name }}</span>
+                <div class="team-players-left">
+                    <!-- Home Team Players -->
+                    <div class="team-players">
+                        <h4 style="margin-top:10px">{{ match_details_data.0.match_hometeam_name }} Players</h4>
+                        <ul>
+                            {% for player in match_details_data.0.lineup.home.starting_lineups %}
+                                <p>{{ player.lineup_player }}</p>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
+            </div>
 
-                <div class="score">{{ match_details_data.0.match_hometeam_ft_score }} - {{ match_details_data.0.match_awayteam_ft_score }}</div>
 
-                <div class="team team-right">
-                    <img src="{{ match_details_data.0.team_away_badge }}" alt="Away Team Logo">
-                    <span class="name">{{ match_details_data.0.match_awayteam_name }}</span>
+            <div class="col-6">
+                {% if match_details_data %}
+                <div class="match-details">
+                    <div class="team-logo-card">
+                        <div class="team team-left">
+                            <img src="{{ match_details_data.0.team_home_badge }}" alt="Home Team Logo">
+                            <span class="name">{{ match_details_data.0.match_hometeam_name }}</span>
+                        </div>
+
+                        <div class="score">{{ match_details_data.0.match_hometeam_ft_score }} - {{ match_details_data.0.match_awayteam_ft_score }}</div>
+
+                        <div class="team team-right">
+                            <img src="{{ match_details_data.0.team_away_badge }}" alt="Away Team Logo">
+                            <span class="name">{{ match_details_data.0.match_awayteam_name }}</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="match-info">
+                        <p>Date: {{ match_details_data.0.match_date }}</p>
+                        <p>Time: {{ match_details_data.0.match_time }}</p>
+                    </div>
                 </div>
+            </div>
+
+            <div class="col-3">
+                <div class="team-players-right">
+                    <!-- Away Team Players -->
+                    <div class="team-players">
+                        <h4 style="margin-top:10px">{{ match_details_data.0.match_awayteam_name }} Players</h4>
+                        <ul>
+                            {% for player in match_details_data.0.lineup.away.starting_lineups %}
+                                <p>{{ player.lineup_player }}</p>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="h2h-container">
+            <h4>Previous Head-to-Head Matches</h4>
+            <ul>
+                {% for match in h2h_data.firstTeam_VS_secondTeam %}
                 
-            </div>
-
-            <div class="match-info">
-                <p>Date: {{ match_details_data.0.match_date }}</p>
-                <p>Time: {{ match_details_data.0.match_time }}</p>
-            </div>
+                    <p>{{ match.match_date }}: {{ match.match_hometeam_name }} {{ match.match_hometeam_score }} - {{ match.match_awayteam_score }} {{ match.match_awayteam_name }}</p>
+                
+                {% endfor %}
+            </ul>
         </div>
 
     

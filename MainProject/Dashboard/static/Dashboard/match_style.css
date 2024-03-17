@@ -125,3 +125,42 @@ body {
     justify-content: center;
     text-align: center;
 }
+
+.h2h-container {
+    margin: 20px auto;
+    padding: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+}
+
+h4 {
+    color: aquamarine;
+}
+
+p {
+    color: #555;
+}
+
+.team-players-left {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.team-players-right {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    padding: 5px;
+}
