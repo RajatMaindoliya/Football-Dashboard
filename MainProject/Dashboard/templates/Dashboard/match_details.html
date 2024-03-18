@@ -116,17 +116,64 @@
             </ul>
         </div>
 
-        <!-- Composite bar chart for Passes Total and Passes Accurate -->
-        <div class="h2h-container">
-            <h4>Passes Total vs Passes Accurate</h4>
-            <canvas id="passesBarChart" width="400" height="200"></canvas>
+
+        <div class="row">
+            <!-- Composite bar chart for total passes vs accurate passes -->
+            <div class="barchart-container">
+                <h4>Total vs Accurate passes</h4>
+                <canvas id="passesBarChart" width="400" height="200"></canvas>
+            </div>
+
+            <!-- Composite bar chart for Shots vs shots on target -->
+            <div class="barchart-container">
+                <h4>Total shots vs Shots on target</h4>
+                <canvas id="shotsBarChart" width="400" height="200"></canvas>
+            </div>
         </div>
-      
+
+
+        <div class="row" style="background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); justify-content: center; text-align: center; margin: 20px auto; padding: 20px; margin-top:30px; max-width:800px;">
+            <h3>Shots Inside vs Shots Outside the Box</h3>
+            <div class="doughnut-container">
+                <h4>{{ match_details_data.0.match_hometeam_name }}</h4>
+                <canvas id="shotsDoughnutChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="doughnut-container">
+                <h4>{{ match_details_data.0.match_awayteam_name }}</h4>
+                <canvas id="awayShotsDoughnutChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <div class="row" style="background-color: aquamarine; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); justify-content: center; text-align: center; margin: 20px auto; padding: 20px; margin-top:30px;">
+            <h3 style="color:white;">Match stats</h3>
+            <div class="piechart-container">
+                <h4>Fouls</h4>
+                <canvas id="foulsChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="piechart-container">
+                <h4>Offsides</h4>
+                <canvas id="offsidesChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="piechart-container">
+                <h4>Corners</h4>
+                <canvas id="cornersChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="piechart-container">
+                <h4>Saves</h4>
+                <canvas id="savesChart" width="400" height="200"></canvas>
+            </div>
+        </div>
     
         {% else %}
         <p>No match details available.</p>
         {% endif %}
     
+        
+
 
         <!-- Include Chart.js library -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -134,7 +181,7 @@
         <!-- JavaScript code for rendering charts -->
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                // Extracting data for total shots
+                //Pie chart for total shots
                 var shotsHome = {{ match_details_data.0.statistics.9.home }};
                 var shotsAway = {{ match_details_data.0.statistics.9.away }};
 
@@ -162,7 +209,8 @@
                     }
                 });
 
-                // Extracting data for total passes
+
+                //Pie chart for total passes
                 var passesHome = {{ match_details_data.0.statistics.20.home }};
                 var passesAway = {{ match_details_data.0.statistics.20.away }};
 
@@ -190,15 +238,17 @@
                     }
                 });
 
-                        // Extracting data for total passes
+                
+
+                //Bar chart for total vs accurate passes
                 var passesTotalHome = {{ match_details_data.0.statistics.20.home }};
                 var passesAccurateHome = {{ match_details_data.0.statistics.21.home }};
                 var passesTotalAway = {{ match_details_data.0.statistics.20.away }};
                 var passesAccurateAway = {{ match_details_data.0.statistics.21.away }};
 
                 // Drawing the composite bar chart for passes
-                var passesCtx = document.getElementById('passesBarChart').getContext('2d');
-                var passesBarChart = new Chart(passesCtx, {
+                var accuratepassesCtx = document.getElementById('passesBarChart').getContext('2d');
+                var passesBarChart = new Chart(accuratepassesCtx, {
                     type: 'bar',
                     data: {
                         labels: ['Home Team', 'Away Team'],
@@ -209,7 +259,7 @@
                             borderWidth: 1,
                             data: [passesTotalHome, passesTotalAway]
                         }, {
-                            label: 'Passes Accurate',
+                            label: 'Accurate Passes',
                             backgroundColor: 'rgba(54, 162, 235, 0.5)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
@@ -226,6 +276,221 @@
                         }
                     }
                 });
+
+
+                // Bar chart for total shots vs shots on target
+                var shotsTotalHome = {{ match_details_data.0.statistics.9.home }};
+                var shotsAccurateHome = {{ match_details_data.0.statistics.10.home }};
+                var shotsTotalAway = {{ match_details_data.0.statistics.9.away }};
+                var shotsAccurateAway = {{ match_details_data.0.statistics.10.away }};
+
+                // Drawing the composite bar chart for passes
+                var accurateshotsCtx = document.getElementById('shotsBarChart').getContext('2d');
+                var shotsBarChart = new Chart(accurateshotsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Shots',
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                            data: [shotsTotalHome, shotsTotalAway]
+                        }, {
+                            label: 'Shots on Target',
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1,
+                            data: [shotsAccurateHome, shotsAccurateAway]
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+
+                //doughnut chart for inside/outside shots for home team
+                var totalShots = {{ match_details_data.0.statistics.9.home }};
+                var shotsInsideBox = {{ match_details_data.0.statistics.13.home }};
+                var shotsOutsideBox = {{ match_details_data.0.statistics.14.home }};
+
+                // Drawing the doughnut chart for shots
+                var shotsDoughnutCtx = document.getElementById('shotsDoughnutChart').getContext('2d');
+                var shotsDoughnutChart = new Chart(shotsDoughnutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Shots Inside Box', 'Shots Outside Box'],
+                        datasets: [{
+                            label: 'Total Shots',
+                            backgroundColor: ['#ff6384', '#36a2eb'],
+                            borderColor: ['#ff6384', '#36a2eb'],
+                            data: [shotsInsideBox, shotsOutsideBox]
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total Shots Composition',
+                            fontSize: 16
+                        }
+                    }
+                });
+
+
+                //doughnut chart for inside/outside shots for away team
+                var awayTotalShots = {{ match_details_data.0.statistics.9.away }};
+                var awayShotsInsideBox = {{ match_details_data.0.statistics.13.away }};
+                var awayShotsOutsideBox = {{ match_details_data.0.statistics.14.away }};
+
+                // Drawing the doughnut chart for shots
+                var awayShotsDoughnutCtx = document.getElementById('awayShotsDoughnutChart').getContext('2d');
+                var awayShotsDoughnutChart = new Chart(awayShotsDoughnutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Shots Inside Box', 'Shots Outside Box'],
+                        datasets: [{
+                            label: 'Total Shots',
+                            backgroundColor: ['#ff6384', '#36a2eb'],
+                            borderColor: ['#ff6384', '#36a2eb'],
+                            data: [awayShotsInsideBox, awayShotsOutsideBox]
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total Shots Composition',
+                            fontSize: 16
+                        }
+                    }
+                });
+
+
+                //Pie chart for Fouls
+                var foulsHome = {{ match_details_data.0.statistics.15.home }};
+                var foulsAway = {{ match_details_data.0.statistics.15.away }};
+
+                // Drawing the fouls pie chart
+                var foulsCtx = document.getElementById('foulsChart').getContext('2d');
+                var foulsPieChart = new Chart(foulsCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Fouls',
+                            data: [foulsHome, foulsAway],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Red color for home team
+                                'rgba(54, 162, 235, 0.5)', // Blue color for away team
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total fouls Comparison'
+                        }
+                    }
+                });
+
+
+                //Pie chart for Offsides
+                var offsidesHome = {{ match_details_data.0.statistics.17.home }};
+                var offsidesAway = {{ match_details_data.0.statistics.17.away }};
+
+                // Drawing the offsides pie chart
+                var offsidesCtx = document.getElementById('offsidesChart').getContext('2d');
+                var offsidesPieChart = new Chart(offsidesCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Offsides',
+                            data: [offsidesHome, offsidesAway],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Red color for home team
+                                'rgba(54, 162, 235, 0.5)', // Blue color for away team
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total offsides Comparison'
+                        }
+                    }
+                });
+
+
+                //Pie chart for Corners
+                var cornersHome = {{ match_details_data.0.statistics.16.home }};
+                var cornersAway = {{ match_details_data.0.statistics.16.away }};
+
+                // Drawing the corners pie chart
+                var cornersCtx = document.getElementById('cornersChart').getContext('2d');
+                var cornersPieChart = new Chart(cornersCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Corners',
+                            data: [cornersHome, cornersAway],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Red color for home team
+                                'rgba(54, 162, 235, 0.5)', // Blue color for away team
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total corners Comparison'
+                        }
+                    }
+                });
+
+
+                //Pie chart for Saves
+                var savesHome = {{ match_details_data.0.statistics.19.home }};
+                var savesAway = {{ match_details_data.0.statistics.19.away }};
+
+                // Drawing the saves pie chart
+                var savesCtx = document.getElementById('savesChart').getContext('2d');
+                var savesPieChart = new Chart(savesCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Saves',
+                            data: [savesHome, savesAway],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Red color for home team
+                                'rgba(54, 162, 235, 0.5)', // Blue color for away team
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total saves Comparison'
+                        }
+                    }
+                });
+
+
+
+                
+
 
                 
             });

@@ -126,6 +126,15 @@ body {
     text-align: center;
 }
 
+.doughnut-container {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    justify-content: center;
+    text-align: center;
+}
+
 .h2h-container {
     margin: 20px auto;
     padding: 20px;
@@ -137,8 +146,20 @@ body {
     text-align: center;
 }
 
+.barchart-container {
+    max-width: 600px;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    width: 600px;
+}
+
 h4 {
-    color: aquamarine;
+    color: silver;
 }
 
 p {
