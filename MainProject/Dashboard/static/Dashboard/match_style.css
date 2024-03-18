@@ -1,58 +1,90 @@
 header {
-    background-color: black;
-  }
-  
-  nav ul {
+    background-color: cyan;
+    padding: 10px 0; /* Add some padding for better spacing */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-  }
-  
-  nav li {
-    float: left;
-    border-right: 1px solid #555;
-  }
-  
-  nav li:last-child {
-    border-right: none;
-  }
-  
-  nav a {
-    display: block;
+}
+
+header nav li {
+    display: inline; /* Instead of floating */
+    margin-right: 10px; /* Add some spacing between menu items */
+}
+
+header nav li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+header nav a {
     text-decoration: none;
-    padding: 14px 16px;
-    text-align: center;
+    padding: 10px 16px; /* Adjust padding for better spacing */
+    color: #000; /* Change text color */
+}
+
+/* Fix for the navbar color issue */
+header nav a:hover {
+    background-color: cyan; /* Match the navbar background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+.team span.name {
+    font-size: 15px;
+    margin-top: 0;
+  }
+
+.score {
+    font-size: 18px;
+    font-weight: 600;
+    color: #555;
+    margin: 10px 0;
   }
 
 /* match_details_style.css */
 
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: monospace;
     background-color: #f2f2f2;
     margin: 0;
     padding: 0;
 }
 
 .match-details {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+  background-color: aquamarine;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  margin:auto;
+  width: 400px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .team-logo-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.team-left,
+.team-right {
+  width: 38%;
 }
 
 .team-logo-card img {
     display: block;
     margin: 0 auto;
-    max-width: 100px;
+    max-width: 60px;
     margin-bottom: 10px;
 }
 
@@ -69,44 +101,6 @@ body {
     margin-bottom: 10px;
 }
 
-.statistics-card {
-    margin-bottom: 20px;
-}
-
-.statistics-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.statistics-card ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.statistics-card ul li {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.shooting-statistics-card {
-    margin-bottom: 20px;
-}
-
-.shooting-statistics-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.shooting-statistics-card ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.shooting-statistics-card ul li {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
 /* Media Query for Responsive Design */
 @media only screen and (max-width: 768px) {
     .match-details {
@@ -119,4 +113,74 @@ body {
         width: 90%;
         margin-bottom: 20px;
     }
+}
+
+.piechart-container {
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+}
+
+.doughnut-container {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    justify-content: center;
+    text-align: center;
+}
+
+.h2h-container {
+    margin: 20px auto;
+    padding: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+}
+
+.barchart-container {
+    max-width: 600px;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    width: 600px;
+}
+
+h4 {
+    color: silver;
+}
+
+p {
+    color: #555;
+}
+
+.team-players-left {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.team-players-right {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    padding: 5px;
 }

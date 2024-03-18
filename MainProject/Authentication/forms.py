@@ -33,9 +33,20 @@ class CreateUserForm(UserCreationForm):
     
     class Meta:
         model = CustomUser  # Change User to CustomUser
-        fields = ['username', 'email', 'password1', 'password2', 'team_name']  # Include your custom field here
+        fields = ['username', 'email', 'password1', 'password2', 'team_name'] 
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
+        self.fields['password1'].help_text = ''
+        self.fields['password2'].help_text = ''
+    
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput())
-        
+    
+    
+
+
+    
