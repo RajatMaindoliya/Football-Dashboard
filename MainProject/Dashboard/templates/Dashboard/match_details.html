@@ -49,26 +49,42 @@
 
 
             <div class="col-6">
-                {% if match_details_data %}
-                <div class="match-details">
-                    <div class="team-logo-card">
-                        <div class="team team-left">
-                            <img src="{{ match_details_data.0.team_home_badge }}" alt="Home Team Logo">
-                            <span class="name">{{ match_details_data.0.match_hometeam_name }}</span>
+                <div class="row">
+                    {% if match_details_data %}
+                    <div class="match-details">
+                        <div class="team-logo-card">
+                            <div class="team team-left">
+                                <img src="{{ match_details_data.0.team_home_badge }}" alt="Home Team Logo">
+                                <span class="name">{{ match_details_data.0.match_hometeam_name }}</span>
+                            </div>
+
+                            <div class="score">{{ match_details_data.0.match_hometeam_ft_score }} - {{ match_details_data.0.match_awayteam_ft_score }}</div>
+
+                            <div class="team team-right">
+                                <img src="{{ match_details_data.0.team_away_badge }}" alt="Away Team Logo">
+                                <span class="name">{{ match_details_data.0.match_awayteam_name }}</span>
+                            </div>
+                            
                         </div>
 
-                        <div class="score">{{ match_details_data.0.match_hometeam_ft_score }} - {{ match_details_data.0.match_awayteam_ft_score }}</div>
-
-                        <div class="team team-right">
-                            <img src="{{ match_details_data.0.team_away_badge }}" alt="Away Team Logo">
-                            <span class="name">{{ match_details_data.0.match_awayteam_name }}</span>
+                        <div class="match-info">
+                            <p>Date: {{ match_details_data.0.match_date }}</p>
+                            <p>Time: {{ match_details_data.0.match_time }}</p>
                         </div>
-                        
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:20px">
+                    <!-- Total shots pie chart -->
+                    <div class="piechart-container">
+                        <h4>Total Shots</h4>
+                        <canvas id="shotsPieChart" width="400" height="400"></canvas>
                     </div>
 
-                    <div class="match-info">
-                        <p>Date: {{ match_details_data.0.match_date }}</p>
-                        <p>Time: {{ match_details_data.0.match_time }}</p>
+                    <!-- Total passes Pie Chart -->
+                    <div class="piechart-container">
+                        <h4>Total Passes</h4>
+                        <canvas id="totalPassesChart" width="400" height="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -100,32 +116,12 @@
             </ul>
         </div>
 
-    
-        <!-- Add canvas for pie chart -->
-        <div class="piechart-container">
-            <h4>Total Shots</h4>
-            <canvas id="shotsPieChart" width="400" height="400"></canvas>
+        <!-- Composite bar chart for Passes Total and Passes Accurate -->
+        <div class="h2h-container">
+            <h4>Passes Total vs Passes Accurate</h4>
+            <canvas id="passesBarChart" width="400" height="200"></canvas>
         </div>
-
-        <!-- Ball Possession Pie Chart -->
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Ball Possession</h5>
-                </div>
-                <div class="card-body">
-                    <!-- Debugging Information -->
-                    {% for stat in match_details_data.0.statistics %}
-                        {% if stat.type == 'Ball Possession' %}
-                            <p>Home: {{ stat.home }}, Away: {{ stat.away }}</p>
-                        {% endif %}
-                    {% endfor %}
-                    
-                    <!-- Chart Canvas -->
-                    <canvas id="ballPossessionChart" width="400" height="400"></canvas>
-                </div>
-            </div>
-        </div>
+      
     
         {% else %}
         <p>No match details available.</p>
@@ -139,8 +135,8 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Extracting data for total shots
-                var shotsHome = {{ match_details_data.0.statistics.10.home }};
-                var shotsAway = {{ match_details_data.0.statistics.10.away }};
+                var shotsHome = {{ match_details_data.0.statistics.9.home }};
+                var shotsAway = {{ match_details_data.0.statistics.9.away }};
 
                 // Drawing the total shots pie chart
                 var shotsCtx = document.getElementById('shotsPieChart').getContext('2d');
@@ -166,19 +162,19 @@
                     }
                 });
 
-                // Extracting data for ball possession
-                var possessionHome = {{ match_details_data.0.statistics.9.home }};
-                var possessionAway = {{ match_details_data.0.statistics.9.away }};
+                // Extracting data for total passes
+                var passesHome = {{ match_details_data.0.statistics.20.home }};
+                var passesAway = {{ match_details_data.0.statistics.20.away }};
 
-                // Drawing the ball possession pie chart
-                var possessionCtx = document.getElementById('ballPossessionChart').getContext('2d');
-                var possessionPieChart = new Chart(possessionCtx, {
+                // Drawing the total passes pie chart
+                var passesCtx = document.getElementById('totalPassesChart').getContext('2d');
+                var passesPieChart = new Chart(passesCtx, {
                     type: 'pie',
                     data: {
                         labels: ['Home Team', 'Away Team'],
                         datasets: [{
-                            label: 'Ball Possession',
-                            data: [possessionHome, possessionAway],
+                            label: 'Total Passes',
+                            data: [passesHome, passesAway],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.5)', // Red color for home team
                                 'rgba(54, 162, 235, 0.5)', // Blue color for away team
@@ -189,10 +185,49 @@
                     options: {
                         title: {
                             display: true,
-                            text: 'Ball Possession Comparison'
+                            text: 'Total passes Comparison'
                         }
                     }
                 });
+
+                        // Extracting data for total passes
+                var passesTotalHome = {{ match_details_data.0.statistics.20.home }};
+                var passesAccurateHome = {{ match_details_data.0.statistics.21.home }};
+                var passesTotalAway = {{ match_details_data.0.statistics.20.away }};
+                var passesAccurateAway = {{ match_details_data.0.statistics.21.away }};
+
+                // Drawing the composite bar chart for passes
+                var passesCtx = document.getElementById('passesBarChart').getContext('2d');
+                var passesBarChart = new Chart(passesCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Home Team', 'Away Team'],
+                        datasets: [{
+                            label: 'Total Passes',
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                            data: [passesTotalHome, passesTotalAway]
+                        }, {
+                            label: 'Passes Accurate',
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1,
+                            data: [passesAccurateHome, passesAccurateAway]
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                
             });
         </script>
     </main>
