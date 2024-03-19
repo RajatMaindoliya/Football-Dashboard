@@ -1,6 +1,11 @@
 header {
     background-color: cyan;
     padding: 10px 0; /* Add some padding for better spacing */
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 header nav {
@@ -33,6 +38,10 @@ header nav a {
 header nav a:hover {
     background-color: cyan; /* Match the navbar background color on hover */
     color: #fff; /* Change text color on hover */
+}
+
+main {
+    margin-top: 60px;
 }
 
 .team span.name {

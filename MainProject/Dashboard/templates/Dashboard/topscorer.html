@@ -10,65 +10,66 @@
     <link rel="stylesheet" type="text/css" href="{% static 'Dashboard/stats.css' %}" />
 </head>
 <body>
-<header class="header-container">
-    <nav style="display: flex; justify-content: space-between;">
-        <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
-            <li><a href="{% url 'dashboard' %}">Home</a></li>
-            <li><a href="{% url 'stats' %}">Stats</a></li>
-            <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
-            <li><a href="/">AI Predictor</a></li>
-        </ul>
-        <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
-            <li><a href="{% url 'logout' %}" style="padding: 8px 12px; background-color: #007bff; margin-top:5px; margin-right:5px; color: #fff; border: none; border-radius: 4px; text-decoration: none;">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+    <main>
+        <header class="header-container">
+            <nav style="display: flex; justify-content: space-between;">
+                <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
+                    <li><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li><a href="{% url 'stats' %}">Stats</a></li>
+                    <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
+                    <li><a href="/">AI Predictor</a></li>
+                </ul>
+                <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
+                    <li><a href="{% url 'logout' %}" style="padding: 8px 12px; background-color: #007bff; margin-top:5px; margin-right:5px; color: #fff; border: none; border-radius: 4px; text-decoration: none;">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
 
-<div class="stats-container">
-    <!-- Add a canvas element for the chart -->
-    <canvas id="goals-chart"></canvas>
+        <div class="stats-container">
+            <!-- Add a canvas element for the chart -->
+            <canvas id="goals-chart"></canvas>
 
-</div>
+        </div>
 
-<!-- Add the chart.js library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Add the chart.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- JavaScript code to render the chart -->
-<script>
-    // Get the data from Django context
-    var teamNames = {{ team_names|safe }};
-    var goalsForData = {{ goals_for|safe }};
-    var goalsAgainstData = {{ goals_against|safe }};
+        <!-- JavaScript code to render the chart -->
+        <script>
+            // Get the data from Django context
+            var teamNames = {{ team_names|safe }};
+            var goalsForData = {{ goals_for|safe }};
+            var goalsAgainstData = {{ goals_against|safe }};
 
-    // Render the chart
-    var ctx = document.getElementById('goals-chart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: teamNames,
-            datasets: [{
-                label: 'Goals For',
-                data: goalsForData,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }, {
-                label: 'Goals Against',
-                data: goalsAgainstData,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            // Render the chart
+            var ctx = document.getElementById('goals-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: teamNames,
+                    datasets: [{
+                        label: 'Goals For',
+                        data: goalsForData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Goals Against',
+                        data: goalsAgainstData,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
-            }
-        }
-    });
-</script>
-
+            });
+        </script>
+    </main>
 </body>
 </html>
