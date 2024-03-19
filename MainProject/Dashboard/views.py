@@ -56,12 +56,30 @@ def display_stats(request):
     goals_for = [team['overall_league_GF'] for team in standings_data]
     goals_against = [team['overall_league_GA'] for team in standings_data]
     league_positions = [team['overall_league_position'] for team in standings_data]
+    wins = [team['overall_league_W'] for team in standings_data]
+    draws = [team['overall_league_D'] for team in standings_data]
+    losses = [team['overall_league_L'] for team in standings_data]
+    home_wins = [team['home_league_W'] for team in standings_data]
+    home_draws = [team['home_league_D'] for team in standings_data]
+    home_losses = [team['home_league_L'] for team in standings_data]
+    away_wins = [team['away_league_W'] for team in standings_data]
+    away_draws = [team['away_league_D'] for team in standings_data]
+    away_losses = [team['away_league_L'] for team in standings_data]
     
     return render(request, 'Dashboard/topscorer.html', {
         'team_names': team_names,
         'goals_for': goals_for,
         'goals_against': goals_against,
         'league_positions': league_positions,
+        'wins': wins,
+        'draws': draws,
+        'losses': losses,
+        'home_wins': home_wins,
+        'home_draws': home_draws,
+        'home_losses': home_losses,
+        'away_wins': away_wins,
+        'away_draws': away_draws,
+        'away_losses': away_losses,
     })
 
 def display_fixtures(request):

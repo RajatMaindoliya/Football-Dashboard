@@ -50,9 +50,23 @@
         </header>
 
 
+
+        <div class="row" style="background-color:aquamarine;">
+            <h4>Results data</h4>
+        </div>
+
+        <div class="results-container">
+            <canvas id="wins-losses-chart"></canvas>
+        </div>
+
+
+        <div class="row" style="background-color:aquamarine;">
+            <h4>Goals data</h4>
+        </div>
+
         <div class="row">
             <div class="stats-container">
-                <!-- Add a canvas element for the chart -->
+                <h5></h5>
                 <canvas id="goals-chart"></canvas>
             </div>
 
@@ -61,6 +75,23 @@
                 <canvas id="goals-bubble-chart"></canvas>
             </div>
         </div>
+
+        <div class="row" style="background-color:aquamarine;">
+            <h4>Home vs Away results</h4>
+        </div>
+
+        <div class="row">
+            <div class="stats-container">
+                <h5>Home Performance</h5>
+                <canvas id="home-performance-chart"></canvas>
+            </div>
+
+            <div class="stats-container">
+                <h5>Away Performance</h5>
+                <canvas id="away-performance-chart"></canvas>
+            </div>
+        </div>
+        
 
 
         <!-- Add the chart.js library -->
@@ -102,6 +133,7 @@
                 }
             });
 
+            //bubble chart to show team position relative to goals scored and conceded
             var teams = teamNames;
             var goalsScored = goalsForData;
             var goalsConceded = goalsAgainstData;
@@ -153,6 +185,153 @@
                                     return label;
                                 }
                             }
+                        }
+                    }
+                }
+            });
+
+            
+            //bar chart to show team wins, draws, and losses
+            var winsData = {{ wins|safe }};
+            var drawsData = {{ draws|safe }};
+            var lossesData = {{ losses|safe }};
+
+            // Render the chart
+            var ctx = document.getElementById('wins-losses-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: teamNames,
+                    datasets: [
+                        {
+                            label: 'Wins',
+                            data: winsData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Draws',
+                            data: drawsData,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Losses',
+                            data: lossesData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            stacked: true,
+                            beginAtZero: true
+                        },
+                        x: {
+                            stacked: true
+                        }
+                    }
+                }
+            });
+
+
+            //bar chart for home performance
+            var homeWinsData = {{ home_wins|safe }};
+            var homeDrawsData = {{ home_draws|safe }};
+            var homeLossesData = {{ home_losses|safe }};
+
+            // Render the chart
+            var ctx = document.getElementById('home-performance-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: teamNames,
+                    datasets: [
+                        {
+                            label: 'Wins',
+                            data: homeWinsData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Draws',
+                            data: homeDrawsData,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Losses',
+                            data: homeLossesData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            stacked: true,
+                            beginAtZero: true
+                        },
+                        x: {
+                            stacked: true
+                        }
+                    }
+                }
+            });
+
+
+            //bar chart for away performance
+            var awayWinsData = {{ away_wins|safe }};
+            var awayDrawsData = {{ away_draws|safe }};
+            var awayLossesData = {{ away_losses|safe }};
+
+            // Render the chart
+            var ctx = document.getElementById('away-performance-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: teamNames,
+                    datasets: [
+                        {
+                            label: 'Wins',
+                            data: awayWinsData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Draws',
+                            data: awayDrawsData,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Losses',
+                            data: awayLossesData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            stacked: true,
+                            beginAtZero: true
+                        },
+                        x: {
+                            stacked: true
                         }
                     }
                 }
