@@ -46,10 +46,6 @@ def display_dashboard(request):
 
 
 def display_stats(request):
-    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
-    topScorer_response = requests.get(topScorer_url)
-    topScorer_data = topScorer_response.json()
-    
     # Make API call to fetch league standings data
     standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
     standings_response = requests.get(standings_url)
@@ -59,12 +55,31 @@ def display_stats(request):
     team_names = [team['team_name'] for team in standings_data]
     goals_for = [team['overall_league_GF'] for team in standings_data]
     goals_against = [team['overall_league_GA'] for team in standings_data]
+    league_positions = [team['overall_league_position'] for team in standings_data]
+    wins = [team['overall_league_W'] for team in standings_data]
+    draws = [team['overall_league_D'] for team in standings_data]
+    losses = [team['overall_league_L'] for team in standings_data]
+    home_wins = [team['home_league_W'] for team in standings_data]
+    home_draws = [team['home_league_D'] for team in standings_data]
+    home_losses = [team['home_league_L'] for team in standings_data]
+    away_wins = [team['away_league_W'] for team in standings_data]
+    away_draws = [team['away_league_D'] for team in standings_data]
+    away_losses = [team['away_league_L'] for team in standings_data]
     
     return render(request, 'Dashboard/topscorer.html', {
         'team_names': team_names,
         'goals_for': goals_for,
         'goals_against': goals_against,
-        'topScorer_data': topScorer_data,
+        'league_positions': league_positions,
+        'wins': wins,
+        'draws': draws,
+        'losses': losses,
+        'home_wins': home_wins,
+        'home_draws': home_draws,
+        'home_losses': home_losses,
+        'away_wins': away_wins,
+        'away_draws': away_draws,
+        'away_losses': away_losses,
     })
 
 def display_fixtures(request):
@@ -93,5 +108,12 @@ def display_team_details(request, team_id):
     team_details_response = requests.get(team_details_url)
     team_details_data = team_details_response.json()
     return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
+
+def display_player_stats(request):
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
+    topScorer_response = requests.get(topScorer_url)
+    topScorer_data = topScorer_response.json()
+    
+    return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
 
     

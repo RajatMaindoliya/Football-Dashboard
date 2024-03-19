@@ -44,20 +44,10 @@ header nav a:hover {
 main {
     margin-top:80px;
     font-family: monospace;
-    background-color: #fff;
 }
 
 /* Styles for the stats page content */
 .stats-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.results-container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -66,8 +56,3 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h4 {
-    text-align: center;
-    color: gray;
-    padding: 5px;
-}
