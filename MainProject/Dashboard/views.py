@@ -46,10 +46,6 @@ def display_dashboard(request):
 
 
 def display_stats(request):
-    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
-    topScorer_response = requests.get(topScorer_url)
-    topScorer_data = topScorer_response.json()
-    
     # Make API call to fetch league standings data
     standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
     standings_response = requests.get(standings_url)
@@ -64,7 +60,6 @@ def display_stats(request):
         'team_names': team_names,
         'goals_for': goals_for,
         'goals_against': goals_against,
-        'topScorer_data': topScorer_data,
     })
 
 def display_fixtures(request):
@@ -95,6 +90,10 @@ def display_team_details(request, team_id):
     return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
 
 def display_player_stats(request):
-    return render(request, 'Dashboard/player_stats.html')
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
+    topScorer_response = requests.get(topScorer_url)
+    topScorer_data = topScorer_response.json()
+    
+    return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
 
     
