@@ -49,6 +49,34 @@
             </nav>
         </header>
 
+        <div class="container mt-4">
+            <h2>Top Scorers</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Player Name</th>
+                        <th>Team</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Penalty Goals</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in topScorer_data %}
+                        <tr>
+                            <td>{{ player.player_place }}</td>
+                            <td>{{ player.player_name }}</td>
+                            <td>{{ player.team_name }}</td>
+                            <td>{{ player.goals }}</td>
+                            <td>{{ player.assists }}</td>
+                            <td>{{ player.penalty_goals }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
