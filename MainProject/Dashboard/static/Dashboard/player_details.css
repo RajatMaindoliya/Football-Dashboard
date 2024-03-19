@@ -1,0 +1,52 @@
+/* Header Styling */
+header {
+    background-color: cyan;
+    padding: 3px 0; /* Add some padding for better spacing */
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav li {
+    display: inline; /* Instead of floating */
+    margin-right: 10px; /* Add some spacing between menu items */
+}
+
+header nav li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+header nav a {
+    text-decoration: none;
+    padding: 10px 16px; /* Adjust padding for better spacing */
+    color: #000; /* Change text color */
+}
+
+/* Fix for the navbar color issue */
+header nav a:hover {
+    background-color: cyan; /* Match the navbar background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+main {
+    margin-top:80px;
+    font-family: monospace;
+}
+
+a.player-link {
+    color: inherit; /* Use the default text color */
+    text-decoration: none; /* Remove underline */
+}
