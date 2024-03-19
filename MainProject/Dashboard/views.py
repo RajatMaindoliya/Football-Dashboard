@@ -55,11 +55,13 @@ def display_stats(request):
     team_names = [team['team_name'] for team in standings_data]
     goals_for = [team['overall_league_GF'] for team in standings_data]
     goals_against = [team['overall_league_GA'] for team in standings_data]
+    league_positions = [team['overall_league_position'] for team in standings_data]
     
     return render(request, 'Dashboard/topscorer.html', {
         'team_names': team_names,
         'goals_for': goals_for,
         'goals_against': goals_against,
+        'league_positions': league_positions,
     })
 
 def display_fixtures(request):

@@ -47,7 +47,7 @@ main {
 
 /* Styles for the stats page content */
 .stats-container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;

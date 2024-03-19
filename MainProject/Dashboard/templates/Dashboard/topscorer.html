@@ -49,11 +49,19 @@
             </nav>
         </header>
 
-        <div class="stats-container">
-            <!-- Add a canvas element for the chart -->
-            <canvas id="goals-chart"></canvas>
 
+        <div class="row">
+            <div class="stats-container">
+                <!-- Add a canvas element for the chart -->
+                <canvas id="goals-chart"></canvas>
+            </div>
+
+            <div class="stats-container">
+                <!-- Add a canvas element for the chart -->
+                <canvas id="goals-bubble-chart"></canvas>
+            </div>
         </div>
+
 
         <!-- Add the chart.js library -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -89,6 +97,62 @@
                     scales: {
                         y: {
                             beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var teams = teamNames;
+            var goalsScored = goalsForData;
+            var goalsConceded = goalsAgainstData;
+            var leaguePositions = {{ league_positions|safe }};
+
+            var ctx = document.getElementById('goals-bubble-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Teams',
+                        data: teams.map((team, index) => ({
+                            x: goalsScored[index],
+                            y: goalsConceded[index],
+                            r: 25 - leaguePositions[index], 
+                            label: team,
+                        })),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Goals Scored'
+                            },
+                            beginAtZero: true
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Goals Conceded'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    var label = context.dataset.data[context.dataIndex].label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += '(' + context.raw.x + ', ' + context.raw.y + ')';
+                                    return label;
+                                }
+                            }
                         }
                     }
                 }
