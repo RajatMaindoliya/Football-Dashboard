@@ -94,4 +94,7 @@ def display_team_details(request, team_id):
     team_details_data = team_details_response.json()
     return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
 
+def display_player_stats(request):
+    return render(request, 'Dashboard/player_stats.html')
+
     

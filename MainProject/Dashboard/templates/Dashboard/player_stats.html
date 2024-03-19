@@ -49,51 +49,6 @@
             </nav>
         </header>
 
-        <div class="stats-container">
-            <!-- Add a canvas element for the chart -->
-            <canvas id="goals-chart"></canvas>
-
-        </div>
-
-        <!-- Add the chart.js library -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <!-- JavaScript code to render the chart -->
-        <script>
-            // Get the data from Django context
-            var teamNames = {{ team_names|safe }};
-            var goalsForData = {{ goals_for|safe }};
-            var goalsAgainstData = {{ goals_against|safe }};
-
-            // Render the chart
-            var ctx = document.getElementById('goals-chart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: teamNames,
-                    datasets: [{
-                        label: 'Goals For',
-                        data: goalsForData,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Goals Against',
-                        data: goalsAgainstData,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
