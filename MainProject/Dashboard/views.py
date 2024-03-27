@@ -14,7 +14,7 @@ def display_dashboard(request):
     #Retrieve the current user
     user = request.user
     
-    #Retrieve the user's favourite team
+    #Retrieve the users favourite team
     favourite_team = user.team_name
     
     print("Favourite Team:", favourite_team)
