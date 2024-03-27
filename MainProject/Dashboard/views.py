@@ -14,7 +14,7 @@ def display_dashboard(request):
     #Retrieve the current user
     user = request.user
     
-    #Retrieve the user's favourite team
+    #Retrieve the users favourite team
     favourite_team = user.team_name
     
     print("Favourite Team:", favourite_team)
@@ -110,9 +110,11 @@ def display_team_details(request, team_id):
     return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
 
 def display_player_details(request, player_id):
-    player_details_url = "https://apiv3.apifootball.com/?action=get_players&player_id="+player_id+"&APIkey=79b27d2d810fd0ae6494e25719"
+    player_details_url = "https://apiv3.apifootball.com/?action=get_players&player_id="+player_id+"&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
     player_details_response = requests.get(player_details_url)
     player_details_data = player_details_response.json()
+    
+    print(player_details_data) 
     return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data})
 
 def display_player_stats(request):

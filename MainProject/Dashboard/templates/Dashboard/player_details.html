@@ -49,6 +49,38 @@
             </nav>
         </header>
 
+        <div class="col-2" style="background-color:cyan; border-radius: 10px;">
+            <div class="row">
+                <div class="team-logo-container">
+                    <!-- Display Player Image -->
+                    <img src="{{ player_details_data.0.player_image }}" alt="{{ player_details_data.0.player_name }} Logo" class="team-logo">
+                </div>
+            </div>
+                
+            <div class="row" style="margin-top:20px;">   
+                    <!-- Display Player Name -->
+                    <h4>{{ player_details_data.0.player_name }}</h4>
+            </div>
+    
+            <div class="row" style="background-color:aquamarine;">
+                <div class="col">
+                    <!-- Display Player Age -->
+                    <p>Age: {{ player_details_data.0.player_age }}</p>
+                </div>
+                <div class="col">
+                    <!-- Display Team Founded -->
+                    <p>Type: {{ player_details_data.0.player_type }}</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-10" style="margin-left: 20px">
+            <div class="players-container">
+                <h2>Player Stats</h2>
+            </div>
+
+        </div>
+
         
 
     </main>
