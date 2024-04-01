@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime, timedelta
 import requests
 from django.contrib.auth.decorators import login_required
+import joblib
 
 today = datetime.today()
 week_ago = today - timedelta(days=7)
@@ -123,5 +124,12 @@ def display_player_stats(request):
     topScorer_data = topScorer_response.json()
     
     return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
+
+def display_predictions(request):
+    future_games_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-03-28&to=2024-04-05&league_id=152&APIkey=79b27d2d810fd0ae6494e2571969d1df55fd1e242851e940efc8c69c8248f91e"
+    future_games_response = requests.get(future_games_url)
+    future_games_data = future_games_response.json()
+    
+    return render(request, 'Dashboard/predictions.html')
 
     
