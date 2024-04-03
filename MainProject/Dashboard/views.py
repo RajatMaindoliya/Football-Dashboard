@@ -115,8 +115,28 @@ def display_player_details(request, player_id):
     player_details_response = requests.get(player_details_url)
     player_details_data = player_details_response.json()
     
-    print(player_details_data) 
-    return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data})
+    clubs_list = ['Arsenal',
+                  'Liverpool',
+                  'Manchester City',
+                  'Aston Villa',
+                  'Tottenham Hotspur',
+                  'Manchester United',
+                  'West Ham United',
+                  'Newcastle United',
+                  'Brighton & Hove Albion',
+                  'Wolverhampton Wanderers',
+                  'AFC Bournemouth',
+                  'Chelsea',
+                  'Fulham',
+                  'Crystal Palace',
+                  'Brentford',
+                  'Everton',
+                  'Nottingham Forest',
+                  'Luton Town',
+                  'Burnley',
+                  'Sheffield United']
+    
+    return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data, 'clubs': clubs_list})
 
 def display_player_stats(request):
     topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"

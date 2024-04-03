@@ -75,8 +75,20 @@
     
         <div class="col-10" style="margin-left: 20px; background-colour: blue; width: 400px">
             <div class="players-container">
-                <h2>Player Stats</h2>
-                <p>fdsfsdlkvslvkkkkkkkkkvsnlvnelvnsvmrirmvljvlrlejvlmslfgjrmvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjrvmrirmvljvlrlejvlmslfgjr</p>
+                <h2>Premier League Stats</h2>
+                {% for club in clubs %}
+                {% for player_stat in player_details_data %}
+                    {% if player_stat.team_name == club %}
+                        <div class="player-stats">
+                            <p>Match Played: {{ player_stat.player_match_played }}</p>
+                            <p>Minutes Played: {{ player_stat.player_minutes }}</p>
+                            <p>Goals: {{ player_stat.player_goals }}</p>
+                            <p>Assists: {{ player_stat.player_assists }}</p>
+                            <!-- Add other desired stats here -->
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
             </div>
         </div>
 
