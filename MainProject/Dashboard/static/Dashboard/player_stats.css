@@ -42,17 +42,62 @@ header nav a:hover {
 }
 
 main {
-    margin-top:80px;
+    
     font-family: monospace;
-}
-
-/* Styles for the stats page content */
-.stats-container {
-    max-width: 800px;
-    margin: 20px auto;
+    display: flex;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
 }
 
+a.player-link {
+    color: inherit; /* Use the default text color */
+    text-decoration: none; /* Remove underline */
+}
+
+h4 {
+    text-align: center;
+    color: black;
+    font-family: monospace;
+  }
+
+  p {
+    margin-left:10px;
+  }
+  
+.team-logo {
+    width: 120px;
+    height: 120px;
+}
+
+.team-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+}
+
+.col-2 {
+    height: 100vh;
+}
+
+.players-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-height: 600px;
+  overflow-y: auto; 
+}
+
+.players-container::-webkit-scrollbar {
+    width: 0;  
+    background: transparent; 
+  }
+
+  a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+  }
+  
+  a:hover {
+    text-decoration: none; /* Remove underline on hover */
+  }

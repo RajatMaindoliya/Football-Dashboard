@@ -1,3 +1,14 @@
+body {
+    font-family: monospace;
+    background-color: #f0f0f0;
+  }
+
+main {
+    display: flex;
+    padding: 20px;
+    margin-top: 60px;
+}
+
 /* Header Styling */
 header {
     background-color: cyan;
@@ -41,20 +52,7 @@ header nav a:hover {
     color: #fff; /* Change text color on hover */
 }
 
-main {
-    
-    font-family: monospace;
-    display: flex;
-    padding: 20px;
-    margin-top: 60px;
-}
-
-a.player-link {
-    color: inherit; /* Use the default text color */
-    text-decoration: none; /* Remove underline */
-}
-
-h4 {
+  h4 {
     text-align: center;
     color: black;
     font-family: monospace;
@@ -64,7 +62,7 @@ h4 {
     margin-left:10px;
   }
   
-.team-logo {
+  .team-logo {
     width: 120px;
     height: 120px;
 }
