@@ -57,19 +57,21 @@
                     <div id="past-fixtures-container" class="scrollable-container">
                         {% for fixture in past_fixtures_data %}
                             <div class="match-container" style="margin-bottom: 15px;">
-                                <div class="teams">
-                                    <div class="team team-left">
-                                        <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge">
-                                        <span class="name">{{ fixture.match_hometeam_name }}</span>
+                                <a href="{% url 'match_details' fixture.match_id %}">
+                                    <div class="teams">
+                                        <div class="team team-left">
+                                            <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge">
+                                            <span class="name">{{ fixture.match_hometeam_name }}</span>
+                                        </div>
+                                        <div class="score">{{ fixture.match_hometeam_ft_score }} - {{ fixture.match_awayteam_ft_score }}</div>
+                                        <div class="team team-right">
+                                            <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_awayteam_name }} Badge">
+                                            <span class="name">{{ fixture.match_awayteam_name }}</span>
+                                        </div>
                                     </div>
-                                    <div class="score">{{ fixture.match_hometeam_ft_score }} - {{ fixture.match_awayteam_ft_score }}</div>
-                                    <div class="team team-right">
-                                        <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_awayteam_name }} Badge">
-                                        <span class="name">{{ fixture.match_awayteam_name }}</span>
-                                    </div>
-                                </div>
-                                <p class="match-date">{{ fixture.match_date }}</p>
-                                <div class="league-name">{{ fixture.league_name }}</div>
+                                    <p class="match-date">{{ fixture.match_date }}</p>
+                                    <div class="league-name">{{ fixture.league_name }}</div>
+                                </a>
                             </div>
                         {% endfor %}
                     </div>
@@ -81,19 +83,21 @@
                     <div id="upcoming-fixtures-container" class="scrollable-container">
                         {% for fixture in upcoming_fixtures_data %}
                             <div class="match-container" style="margin-bottom: 15px;">
-                                <div class="teams">
-                                    <div class="team team-left">
-                                        <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge">
-                                        <span class="name">{{ fixture.match_hometeam_name }}</span>
+                                
+                                    <div class="teams">
+                                        <div class="team team-left">
+                                            <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge">
+                                            <span class="name">{{ fixture.match_hometeam_name }}</span>
+                                        </div>
+                                        <div class="score">{{ fixture.match_hometeam_ft_score }} - {{ fixture.match_awayteam_ft_score }}</div>
+                                        <div class="team team-right">
+                                            <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_awayteam_name }} Badge">
+                                            <span class="name">{{ fixture.match_awayteam_name }}</span>
+                                        </div>
                                     </div>
-                                    <div class="score">{{ fixture.match_hometeam_ft_score }} - {{ fixture.match_awayteam_ft_score }}</div>
-                                    <div class="team team-right">
-                                        <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_awayteam_name }} Badge">
-                                        <span class="name">{{ fixture.match_awayteam_name }}</span>
-                                    </div>
-                                </div>
-                                <p class="match-date">{{ fixture.match_date }}</p>
-                                <div class="league-name">{{ fixture.league_name }}</div>
+                                    <p class="match-date">{{ fixture.match_date }}</p>
+                                    <div class="league-name">{{ fixture.league_name }}</div>
+                                
                             </div>
                         {% endfor %}
                     </div>
