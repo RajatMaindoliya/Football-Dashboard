@@ -233,8 +233,8 @@
 
 
                 //Pie chart for total passes
-                var passesHome = {{ match_details_data.0.statistics.20.home }};
-                var passesAway = {{ match_details_data.0.statistics.20.away }};
+                var passesHome = {{ match_details_data.0.statistics.21.home }};
+                var passesAway = {{ match_details_data.0.statistics.21.away }};
 
                 // Drawing the total passes pie chart
                 var passesCtx = document.getElementById('totalPassesChart').getContext('2d');
@@ -263,10 +263,10 @@
                 
 
                 //Bar chart for total vs accurate passes
-                var passesTotalHome = {{ match_details_data.0.statistics.20.home }};
-                var passesAccurateHome = {{ match_details_data.0.statistics.21.home }};
-                var passesTotalAway = {{ match_details_data.0.statistics.20.away }};
-                var passesAccurateAway = {{ match_details_data.0.statistics.21.away }};
+                var passesTotalHome = {{ match_details_data.0.statistics.21.home }};
+                var passesAccurateHome = {{ match_details_data.0.statistics.22.home }};
+                var passesTotalAway = {{ match_details_data.0.statistics.21.away }};
+                var passesAccurateAway = {{ match_details_data.0.statistics.22.away }};
 
                 // Drawing the composite bar chart for passes
                 var accuratepassesCtx = document.getElementById('passesBarChart').getContext('2d');
@@ -482,8 +482,8 @@
 
 
                 //Pie chart for Saves
-                var savesHome = {{ match_details_data.0.statistics.19.home }};
-                var savesAway = {{ match_details_data.0.statistics.19.away }};
+                var savesHome = {{ match_details_data.0.statistics.20.home }};
+                var savesAway = {{ match_details_data.0.statistics.20.away }};
 
                 // Drawing the saves pie chart
                 var savesCtx = document.getElementById('savesChart').getContext('2d');
