@@ -49,32 +49,57 @@
         </nav>
     </header>
     <main>
-    
-        <div>            
-            {% for result in fixtures_data %}
-            <div class="match-container" style="margin-bottom: 15px;">
-
-                    <div class="teams">
-                        <div class="team team-left">
-                            <img src="{{ result.team_home_badge }}" alt="{{ result.match_hometeam_name }} Badge">
-                            <span class="name">{{ result.match_hometeam_name }}</span>
-                        </div>
-
-                        <div class="score">{{ result.match_hometeam_ft_score }} - {{ result.match_awayteam_ft_score }}</div>
-
-                        <div class="team team-right">
-                            <img src="{{ result.team_away_badge }}" alt="{{ result.match_awayteam_name }} Badge">
-                            <span class="name">{{ result.match_awayteam_name }}</span>
-                        </div>
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Past Matches Column -->
+                <div class="col-md-6">
+                    <h4>Past Matches</h4>
+                    <div id="past-fixtures-container" class="scrollable-container">
+                        {% for fixture in past_fixtures_data %}
+                            <div class="match-container" style="margin-bottom: 15px;">
+                                <div class="teams">
+                                    <div class="team team-left">
+                                        <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge">
+                                        <span class="name">{{ fixture.match_hometeam_name }}</span>
+                                    </div>
+                                    <div class="score">{{ fixture.match_hometeam_ft_score }} - {{ fixture.match_awayteam_ft_score }}</div>
+                                    <div class="team team-right">
+                                        <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_awayteam_name }} Badge">
+                                        <span class="name">{{ fixture.match_awayteam_name }}</span>
+                                    </div>
+                                </div>
+                                <p class="match-date">{{ fixture.match_date }}</p>
+                                <div class="league-name">{{ fixture.league_name }}</div>
+                            </div>
+                        {% endfor %}
                     </div>
+                </div>
 
-                    <div class="league-name">{{ result.league_name }}</div>
-
+                <!-- Upcoming Matches Column -->
+                <div class="col-md-6">
+                    <h4>Upcoming Fixtures</h4>
+                    <div id="upcoming-fixtures-container" class="scrollable-container">
+                        {% for fixture in upcoming_fixtures_data %}
+                            <div class="match-container" style="margin-bottom: 15px;">
+                                <div class="teams">
+                                    <div class="team team-left">
+                                        <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge">
+                                        <span class="name">{{ fixture.match_hometeam_name }}</span>
+                                    </div>
+                                    <div class="score">{{ fixture.match_hometeam_ft_score }} - {{ fixture.match_awayteam_ft_score }}</div>
+                                    <div class="team team-right">
+                                        <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_awayteam_name }} Badge">
+                                        <span class="name">{{ fixture.match_awayteam_name }}</span>
+                                    </div>
+                                </div>
+                                <p class="match-date">{{ fixture.match_date }}</p>
+                                <div class="league-name">{{ fixture.league_name }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-
-            {% endfor %}
-        </div>    
-
+        </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

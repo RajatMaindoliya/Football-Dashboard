@@ -84,11 +84,23 @@ def display_stats(request):
     })
 
 def display_fixtures(request):
-    fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from="+week_ago_formatted+"&to="+today_formatted+"&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
-    fixtures_response = requests.get(fixtures_url)
-    fixtures_data = fixtures_response.json()
-    
-    return render(request, 'Dashboard/fixtures.html', {'fixtures_data': fixtures_data})
+    # Calculate dates for past matches and upcoming fixtures
+    today = datetime.now()
+    week_ago = today - timedelta(days=7)
+    today_formatted = today.strftime("%Y-%m-%d")
+    week_ago_formatted = week_ago.strftime("%Y-%m-%d")
+
+    # Fetch past matches
+    past_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + week_ago_formatted + "&to=" + today_formatted + "&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    past_fixtures_response = requests.get(past_fixtures_url)
+    past_fixtures_data = past_fixtures_response.json()
+
+    # Fetch upcoming fixtures
+    upcoming_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + today_formatted + "&to=" + (today + timedelta(days=50)).strftime("%Y-%m-%d") + "&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    upcoming_fixtures_response = requests.get(upcoming_fixtures_url)
+    upcoming_fixtures_data = upcoming_fixtures_response.json()
+
+    return render(request, 'Dashboard/fixtures.html', {'past_fixtures_data': past_fixtures_data, 'upcoming_fixtures_data': upcoming_fixtures_data})
 
 def display_match_details(request, match_id):
     match_details_url = "https://apiv3.apifootball.com/?action=get_events&match_id="+match_id+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
