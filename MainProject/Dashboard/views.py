@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import requests
 from django.contrib.auth.decorators import login_required
 import joblib
+from Predictions.models import FootballPredictor
 
 today = datetime.today()
 week_ago = today - timedelta(days=7)
@@ -99,7 +100,7 @@ def display_fixtures(request):
     upcoming_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + today_formatted + "&to=" + (today + timedelta(days=50)).strftime("%Y-%m-%d") + "&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
     upcoming_fixtures_response = requests.get(upcoming_fixtures_url)
     upcoming_fixtures_data = upcoming_fixtures_response.json()
-
+    
     return render(request, 'Dashboard/fixtures.html', {'past_fixtures_data': past_fixtures_data, 'upcoming_fixtures_data': upcoming_fixtures_data})
 
 def display_match_details(request, match_id):
@@ -158,10 +159,10 @@ def display_player_stats(request):
     return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
 
 def display_predictions(request):
-    future_games_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-03-28&to=2024-04-05&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
-    future_games_response = requests.get(future_games_url)
-    future_games_data = future_games_response.json()
-    
-    return render(request, 'Dashboard/predictions.html')
+    team_performance = [0, 15, 16, 5, 12]
+    predictor = FootballPredictor()
+    prediction = predictor.predict_outcome(team_performance)
+    context = {'prediction': prediction}
+    return render(request, 'Dashboard/predictions.html', context)
 
     
