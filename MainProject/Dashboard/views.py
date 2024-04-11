@@ -5,6 +5,7 @@ import requests
 from django.contrib.auth.decorators import login_required
 import joblib
 from Predictions.models import FootballPredictor
+import pandas as pd
 
 today = datetime.today()
 week_ago = today - timedelta(days=7)
@@ -101,6 +102,59 @@ def display_fixtures(request):
     upcoming_fixtures_response = requests.get(upcoming_fixtures_url)
     upcoming_fixtures_data = upcoming_fixtures_response.json()
     
+    #Prepare data for predictions
+    team_mapping = {
+        "Bournemouth": 2,
+        "Manchester Utd": 16,
+        "Brentford": 3,
+        "Sheffield Utd": 20,
+        "Burnley": 5,
+        "Brighton": 4,
+        "Manchester City": 15,
+        "Luton": 12,
+        "Newcastle": 17,
+        "Tottenham": 22,
+        "Nottingham": 19,
+        "Wolves": 26,
+        "Arsenal": 0,
+        "Aston Villa": 1,
+        "Liverpool": 14,
+        "Crystal Palace": 8,
+        "West Ham": 25,
+        "Fulham": 10,
+        "Chelsea": 7,
+        "Everton": 9,
+    }
+    
+    predictor = FootballPredictor()
+    
+    # Iterate over upcoming fixtures and make predictions
+    for fixture in upcoming_fixtures_data:
+        team_name = fixture["match_hometeam_name"]
+        opp_team_name = fixture["match_awayteam_name"]
+        day_of_week = datetime.strptime(fixture["match_date"], "%Y-%m-%d").weekday()
+        hour_of_match = int(fixture["match_time"].split(":")[0])
+        venue_code = 1 if fixture["match_hometeam_name"] == team_name else 0
+
+        # Map team names to numerical codes
+        home_team_code = team_mapping.get(team_name)
+        opp_team_code = team_mapping.get(opp_team_name)
+        
+        team_performance = [
+            venue_code,
+            opp_team_code,
+            hour_of_match,
+            day_of_week,
+            home_team_code
+        ]
+
+        # Make prediction
+        prediction = predictor.predict_outcome(team_performance)
+
+        # Add prediction to fixture data
+        fixture["prediction"] = prediction
+
+    
     return render(request, 'Dashboard/fixtures.html', {'past_fixtures_data': past_fixtures_data, 'upcoming_fixtures_data': upcoming_fixtures_data})
 
 def display_match_details(request, match_id):
@@ -159,10 +213,11 @@ def display_player_stats(request):
     return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
 
 def display_predictions(request):
-    team_performance = [0, 15, 16, 5, 12]
+    team_performance = [0, 64, 16, 5, 11]
     predictor = FootballPredictor()
     prediction = predictor.predict_outcome(team_performance)
     context = {'prediction': prediction}
+    
     return render(request, 'Dashboard/predictions.html', context)
 
     
