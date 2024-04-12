@@ -97,6 +97,15 @@
                                     </div>
                                     <p class="match-date">{{ fixture.match_date }}</p>
                                     <div class="league-name">{{ fixture.league_name }}</div>
+                                    {% if fixture.prediction is not None %}
+                                        {% if fixture.prediction == 0 %}
+                                            <p class="prediction">AI Prediction: <img src="{{ fixture.team_away_badge }}" alt="{{ fixture.match_away_name }} Badge" style="width:20px; height:20px"> to win</p>
+                                        {% elif fixture.prediction == 1 %}
+                                            <p class="prediction">AI Prediction: <img src="{{ fixture.team_home_badge }}" alt="{{ fixture.match_hometeam_name }} Badge" style="width:20px; height:20px"> to win</p>
+                                        {% elif fixture.prediction == 2 %}
+                                            <p class="prediction">AI Prediction: Draw</p>
+                                        {% endif %}
+                                    {% endif %}
                                 
                             </div>
                         {% endfor %}
