@@ -175,13 +175,13 @@
             </div>
 
             <div class="row">
-                <div class="stats-container">
-                        <p>
+                    <div class="stats-container">
+                        <a href="{% url 'player_details' topScorer_data.0.player_key %}">
                             <img src="{{ topScorerImage_data.0.player_image|safe }}" alt="{{ topScorer_data.0.player_name }} Badge" class="top-scorer">
+                        </a>
                             <span class="player-name">{{ topScorer_data.0.player_name }}</span> - 
                             <span class="goals">{{ topScorer_data.0.goals }}</span> Goals
-                        </p>
-                </div>
+                    </div>
             </div>
 
         </div> 
