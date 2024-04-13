@@ -53,10 +53,9 @@
     </header>
 
     <main>
-     
         <div class="col-3" style="margin-left:5px;">  
             <div class="row" style="background-color: cyan; margin-top:20px; margin-bottom:20px; width:100%; border-radius: 10px;">
-                <h4>Latest Match</h4>
+                <h4 style="margin-top:5px">Latest Match</h4>
             </div>
         
             <div class="row">
@@ -65,7 +64,7 @@
                     {% if latest_match.match_status == "Finished" %}
                         <a href="{% url 'match_details' latest_match.match_id %}">
                     {% endif %}
-                    <div class="match-container">
+                    <div class="match-container" style="margin-left:10px">
                         <div class="teams">
                             <div class="team team-left">
                                 <img src="{{ latest_match.team_home_badge }}" alt="{{ latest_match.match_hometeam_name }} Badge">
@@ -88,6 +87,15 @@
                                     <p class="match-status">{{ latest_match.match_date }} - {{ latest_match.match_time }}</p>
                                 {% endif %}
                             </div>
+                            {% if latest_match.prediction is not None %}
+                                {% if latest_match.prediction == 0 %}
+                                    <p class="prediction">AI Predicted: <img src="{{ latest_match.team_away_badge }}" alt="{{ latest_match.match_away_name }} Badge" style="width:20px; height:20px"> to win</p>
+                                {% elif latest_match.prediction == 1 %}
+                                    <p class="prediction">AI Predicted: <img src="{{ latest_match.team_home_badge }}" alt="{{ latest_match.match_hometeam_name }} Badge" style="width:20px; height:20px"> to win</p>
+                                {% elif latest_match.prediction == 2 %}
+                                    <p class="prediction">AI Predicted: Draw</p>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                     {% if latest_match.match_status == "Finished" %}
@@ -97,17 +105,12 @@
             {% else %}
                 <p>No matches available</p>
             {% endif %}
-            
             </div>
         </div>
         
-        
-        
-        
-
         <div class="col-6">
             <div class="row" style="background-color: cyan; margin:10px; border-radius: 10px;">
-                <h4>League table</h4>
+                <h4 style="margin-top: 5px">League table</h4>
             </div>
             <div class="row">
                 <div class="league-table-container">
@@ -155,7 +158,7 @@
         <div class="col-3" style="margin-left:10px;">
 
             <div class="row" style="margin:20px; background-color: cyan; border-radius: 10px;">
-                <h4>Your team</h4>
+                <h4 style="margin-top: 5px">Your team</h4>
             </div>
         
             <div class="row">
@@ -167,11 +170,8 @@
                 {% endfor %}
             </div>
 
-
-
-
             <div class="row" style="margin:20px; background-color: cyan; border-radius: 10px;">
-                <a href="{% url 'stats' %}"> <h4>Top Scorer</h4>  </a>
+                <a href="{% url 'player_stats' %}"> <h4 style="margin-top: 5px">Top Scorer</h4>  </a>
             </div>
 
             <div class="row">

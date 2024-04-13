@@ -169,7 +169,8 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   max-width: fit-content;
-  padding: 20px;
+  padding: 10px;
+  margin-top:10px;
 }
 
 .league-table th,

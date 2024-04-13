@@ -69,7 +69,7 @@
                                             <span class="name">{{ fixture.match_awayteam_name }}</span>
                                         </div>
                                     </div>
-                                    <p class="match-date">{{ fixture.match_date }}</p>
+                                    <p class="match-date">{{ fixture.match_date }} - {{ fixture.match_time }}</p>
                                     <div class="league-name">{{ fixture.league_name }}</div>
                                 </a>
                             </div>
@@ -95,7 +95,7 @@
                                             <span class="name">{{ fixture.match_awayteam_name }}</span>
                                         </div>
                                     </div>
-                                    <p class="match-date">{{ fixture.match_date }}</p>
+                                    <p class="match-date">{{ fixture.match_date }} - {{ fixture.match_time }}</p>
                                     <div class="league-name">{{ fixture.league_name }}</div>
                                     {% if fixture.prediction is not None %}
                                         {% if fixture.prediction == 0 %}
