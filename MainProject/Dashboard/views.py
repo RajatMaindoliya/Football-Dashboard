@@ -196,6 +196,80 @@ def display_match_details(request, match_id):
     match_details_response = requests.get(match_details_url)
     match_details_data = match_details_response.json()
     
+    statistics = match_details_data[0]["statistics"]
+    total_shots = {"home": None, "away": None}
+    total_passes = {"home": None, "away": None}
+    accurate_passes = {"home": None, "away": None}
+    shots_on_target = {"home": None, "away": None}
+    shots_inside_box = {"home": None, "away": None}
+    shots_outside_box = {"home": None, "away": None}
+    fouls = {"home": None, "away": None}
+    offsides = {"home": None, "away": None}
+    corners = {"home": None, "away": None}
+    saves = {"home": None, "away": None}
+    
+    for stat in statistics:
+        if stat["type"] == "Shots Total":
+            total_shots["home"] = stat["home"]
+            total_shots["away"] = stat["away"]
+            break
+    
+    for stat in statistics:
+        if stat["type"] == "Passes Total":
+            total_passes["home"] = stat["home"]
+            total_passes["away"] = stat["away"]
+            break
+        
+    for stat in statistics:
+        if stat["type"] == "Passes Accurate":
+            accurate_passes["home"] = stat["home"]
+            accurate_passes["away"] = stat["away"]
+            break
+        
+    for stat in statistics:
+        if stat["type"] == "On Target":
+            shots_on_target["home"] = stat["home"]
+            shots_on_target["away"] = stat["away"]
+            break
+        
+    for stat in statistics:
+        if stat["type"] == "Shots Inside Box":
+            shots_inside_box["home"] = stat["home"]
+            shots_inside_box["away"] = stat["away"]
+            break
+        
+    for stat in statistics:
+        if stat["type"] == "Shots Outside Box":
+            shots_outside_box["home"] = stat["home"]
+            shots_outside_box["away"] = stat["away"]
+            break
+        
+    for stat in statistics:
+        if stat["type"] == "Fouls":
+            fouls["home"] = stat["home"]
+            fouls["away"] = stat["away"]
+            break
+    
+    for stat in statistics:
+        if stat["type"] == "Offsides":
+            offsides["home"] = stat["home"]
+            offsides["away"] = stat["away"]
+            break
+        
+    for stat in statistics:
+        if stat["type"] == "Corners":
+            corners["home"] = stat["home"]
+            corners["away"] = stat["away"]
+            break
+    
+    for stat in statistics:
+        if stat["type"] == "Saves":
+            saves["home"] = stat["home"]
+            saves["away"] = stat["away"]
+            break
+    
+        
+    #Gather the head to head data
     home_team_id = match_details_data[0]["match_hometeam_id"]
     away_team_id = match_details_data[0]["match_awayteam_id"]
     
@@ -203,7 +277,19 @@ def display_match_details(request, match_id):
     h2h_response = requests.get(h2h_url)
     h2h_data = h2h_response.json()
     
-    return render(request, 'Dashboard/match_details.html', {'match_details_data': match_details_data, 'h2h_data': h2h_data})
+    return render(request, 'Dashboard/match_details.html', 
+                          {'match_details_data': match_details_data,
+                           'h2h_data': h2h_data,
+                           'total_shots': total_shots,
+                           'total_passes': total_passes,
+                           'accurate_passes': accurate_passes,
+                           'shots_on_target': shots_on_target,
+                           'shots_inside_box': shots_inside_box,
+                           'shots_outside_box': shots_outside_box,
+                           'fouls': fouls,
+                           'offsides': offsides,
+                           'corners': corners,
+                           'saves': saves})
 
 def display_team_details(request, team_id):
     team_details_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+team_id+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"

@@ -204,8 +204,8 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 //Pie chart for total shots
-                var shotsHome = {{ match_details_data.0.statistics.9.home }};
-                var shotsAway = {{ match_details_data.0.statistics.9.away }};
+                var shotsHome = {{ total_shots.home }};
+                var shotsAway = {{ total_shots.away }};
 
                 // Drawing the total shots pie chart
                 var shotsCtx = document.getElementById('shotsPieChart').getContext('2d');
@@ -233,8 +233,8 @@
 
 
                 //Pie chart for total passes
-                var passesHome = {{ match_details_data.0.statistics.21.home }};
-                var passesAway = {{ match_details_data.0.statistics.21.away }};
+                var passesHome = {{ total_passes.home }};
+                var passesAway = {{ total_passes.away }};
 
                 // Drawing the total passes pie chart
                 var passesCtx = document.getElementById('totalPassesChart').getContext('2d');
@@ -263,10 +263,10 @@
                 
 
                 //Bar chart for total vs accurate passes
-                var passesTotalHome = {{ match_details_data.0.statistics.21.home }};
-                var passesAccurateHome = {{ match_details_data.0.statistics.22.home }};
-                var passesTotalAway = {{ match_details_data.0.statistics.21.away }};
-                var passesAccurateAway = {{ match_details_data.0.statistics.22.away }};
+                var passesTotalHome = {{ total_passes.home }};
+                var passesAccurateHome = {{ accurate_passes.home }};
+                var passesTotalAway = {{ total_passes.away }};
+                var passesAccurateAway = {{ accurate_passes.away }};
 
                 // Drawing the composite bar chart for passes
                 var accuratepassesCtx = document.getElementById('passesBarChart').getContext('2d');
@@ -301,12 +301,12 @@
 
 
                 // Bar chart for total shots vs shots on target
-                var shotsTotalHome = {{ match_details_data.0.statistics.9.home }};
-                var shotsAccurateHome = {{ match_details_data.0.statistics.10.home }};
-                var shotsTotalAway = {{ match_details_data.0.statistics.9.away }};
-                var shotsAccurateAway = {{ match_details_data.0.statistics.10.away }};
+                var shotsTotalHome = {{ total_shots.home }};
+                var shotsAccurateHome = {{ shots_on_target.home }};
+                var shotsTotalAway = {{ total_shots.away }};
+                var shotsAccurateAway = {{ shots_on_target.away }};
 
-                // Drawing the composite bar chart for passes
+                // Drawing the composite bar chart for accurate shots
                 var accurateshotsCtx = document.getElementById('shotsBarChart').getContext('2d');
                 var shotsBarChart = new Chart(accurateshotsCtx, {
                     type: 'bar',
@@ -339,9 +339,9 @@
 
 
                 //doughnut chart for inside/outside shots for home team
-                var totalShots = {{ match_details_data.0.statistics.9.home }};
-                var shotsInsideBox = {{ match_details_data.0.statistics.13.home }};
-                var shotsOutsideBox = {{ match_details_data.0.statistics.14.home }};
+                var totalShots = {{ total_shots.home }};
+                var shotsInsideBox = {{ shots_inside_box.home }};
+                var shotsOutsideBox = {{ shots_outside_box.home }};
 
                 // Drawing the doughnut chart for shots
                 var shotsDoughnutCtx = document.getElementById('shotsDoughnutChart').getContext('2d');
@@ -367,9 +367,9 @@
 
 
                 //doughnut chart for inside/outside shots for away team
-                var awayTotalShots = {{ match_details_data.0.statistics.9.away }};
-                var awayShotsInsideBox = {{ match_details_data.0.statistics.13.away }};
-                var awayShotsOutsideBox = {{ match_details_data.0.statistics.14.away }};
+                var awayTotalShots = {{ total_shots.away }};
+                var awayShotsInsideBox = {{ shots_inside_box.away }};
+                var awayShotsOutsideBox = {{ shots_outside_box.away }};
 
                 // Drawing the doughnut chart for shots
                 var awayShotsDoughnutCtx = document.getElementById('awayShotsDoughnutChart').getContext('2d');
@@ -395,8 +395,8 @@
 
 
                 //Pie chart for Fouls
-                var foulsHome = {{ match_details_data.0.statistics.15.home }};
-                var foulsAway = {{ match_details_data.0.statistics.15.away }};
+                var foulsHome = {{ fouls.home }};
+                var foulsAway = {{ fouls.away }};
 
                 // Drawing the fouls pie chart
                 var foulsCtx = document.getElementById('foulsChart').getContext('2d');
@@ -424,8 +424,8 @@
 
 
                 //Pie chart for Offsides
-                var offsidesHome = {{ match_details_data.0.statistics.17.home }};
-                var offsidesAway = {{ match_details_data.0.statistics.17.away }};
+                var offsidesHome = {{ offsides.home }};
+                var offsidesAway = {{ offsides.away }};
 
                 // Drawing the offsides pie chart
                 var offsidesCtx = document.getElementById('offsidesChart').getContext('2d');
@@ -453,8 +453,8 @@
 
 
                 //Pie chart for Corners
-                var cornersHome = {{ match_details_data.0.statistics.16.home }};
-                var cornersAway = {{ match_details_data.0.statistics.16.away }};
+                var cornersHome = {{ corners.home }};
+                var cornersAway = {{ corners.away }};
 
                 // Drawing the corners pie chart
                 var cornersCtx = document.getElementById('cornersChart').getContext('2d');
@@ -482,8 +482,8 @@
 
 
                 //Pie chart for Saves
-                var savesHome = {{ match_details_data.0.statistics.20.home }};
-                var savesAway = {{ match_details_data.0.statistics.20.away }};
+                var savesHome = {{ saves.home }};
+                var savesAway = {{ saves.away }};
 
                 // Drawing the saves pie chart
                 var savesCtx = document.getElementById('savesChart').getContext('2d');
@@ -507,14 +507,7 @@
                             text: 'Total saves Comparison'
                         }
                     }
-                });
-
-
-
-                
-
-
-                
+                });  
             });
         </script>
     </main>
