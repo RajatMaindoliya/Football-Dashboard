@@ -71,7 +71,6 @@
             </div>
 
             <div class="stats-container">
-                <!-- Add a canvas element for the chart -->
                 <canvas id="goals-bubble-chart"></canvas>
             </div>
         </div>
@@ -94,10 +93,10 @@
         
 
 
-        <!-- Add the chart.js library -->
+        
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <!-- JavaScript code to render the chart -->
+        
         <script>
             // Get the data from Django context
             var teamNames = {{ team_names|safe }};

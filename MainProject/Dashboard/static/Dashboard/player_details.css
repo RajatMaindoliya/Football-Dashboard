@@ -9,10 +9,9 @@ main {
     margin-top: 60px;
 }
 
-/* Header Styling */
 header {
     background-color: cyan;
-    padding: 3px 0; /* Add some padding for better spacing */
+    padding: 3px 0;
     z-index: 1000;
     position: fixed;
     top: 0;
@@ -82,20 +81,31 @@ header nav a:hover {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-height: 600px;
+  max-height: 300px;
   overflow-y: auto; 
 }
 
 .players-container::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 0; 
+    background: transparent;
   }
 
   a {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit text color */
+    text-decoration: none; 
+    color: inherit; 
   }
   
   a:hover {
-    text-decoration: none; /* Remove underline on hover */
+    text-decoration: none;
   }
+
+  .piechart-container {
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+}
