@@ -219,6 +219,8 @@ def display_match_details(request, match_id):
     corners = {"home": None, "away": None}
     saves = {"home": None, "away": None}
     
+    
+    #I used different for loops and the data provided by the API is not consistent
     for stat in statistics:
         if stat["type"] == "Shots Total":
             total_shots["home"] = stat["home"]
@@ -313,28 +315,9 @@ def display_player_details(request, player_id):
     player_details_response = requests.get(player_details_url)
     player_details_data = player_details_response.json()
     
-    clubs_list = ['Arsenal',
-                  'Liverpool',
-                  'Manchester City',
-                  'Aston Villa',
-                  'Tottenham Hotspur',
-                  'Manchester United',
-                  'West Ham United',
-                  'Newcastle United',
-                  'Brighton & Hove Albion',
-                  'Wolverhampton Wanderers',
-                  'AFC Bournemouth',
-                  'Chelsea',
-                  'Fulham',
-                  'Crystal Palace',
-                  'Brentford',
-                  'Everton',
-                  'Nottingham Forest',
-                  'Luton Town',
-                  'Burnley',
-                  'Sheffield United']
+    player_details_data = player_details_data[-1]
     
-    return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data, 'clubs': clubs_list})
+    return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data})
 
 def display_player_stats(request):
     topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
