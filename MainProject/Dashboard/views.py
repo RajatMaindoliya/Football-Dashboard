@@ -30,6 +30,11 @@ def display_dashboard(request):
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
     
+    top_scorer_player_key = topScorer_data[0]['player_key']
+    topScorerImage_url = "https://apiv3.apifootball.com/?action=get_players&player_id=" + str(top_scorer_player_key) + "&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    topScorerImage_response = requests.get(topScorerImage_url)
+    topScorerImage_data = topScorerImage_response.json()
+    
     favouriteTeam_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+favourite_team+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
     favouriteTeam_response = requests.get(favouriteTeam_url)
     favouriteTeam_data = favouriteTeam_response.json()
@@ -83,7 +88,13 @@ def display_dashboard(request):
 
     latest_match["prediction"] = prediction
      
-    return render(request, 'Dashboard/dashboard.html', {'standings_data': standings_data, 'events_data': events_data, 'topScorer_data': topScorer_data, 'favouriteTeam_data': favouriteTeam_data, 'latest_match': latest_match})
+    return render(request, 'Dashboard/dashboard.html', {
+                           'standings_data': standings_data, 
+                           'events_data': events_data,
+                           'topScorer_data': topScorer_data, 
+                           'favouriteTeam_data': favouriteTeam_data,
+                           'latest_match': latest_match,
+                           'topScorerImage_data': topScorerImage_data})
 
 
 def display_stats(request):

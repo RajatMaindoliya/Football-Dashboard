@@ -158,6 +158,11 @@ main {
   height: 30px; 
 }
 
+.top-scorer {
+  width: 150px; 
+  height: 150px;
+}
+
 .table_title {
   padding-right: 20px;
 }
