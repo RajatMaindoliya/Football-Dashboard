@@ -68,21 +68,20 @@ header nav a:hover {
 
 .team-logo-container {
     display: flex;
-    justify-content: center; /* Horizontally center */
+    justify-content: center;
     margin-top:20px;
 }
 
 .col-2 {
-    height: 100vh; /* Set height to 100% of viewport height */
+    height: 100vh;
 }
 
 .players-container {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-height: 300px;
-  overflow-y: auto; 
+  max-height: 180px; 
+  justify-content: center;
+  width:max-content;
+  margin:5px;
 }
 
 .players-container::-webkit-scrollbar {

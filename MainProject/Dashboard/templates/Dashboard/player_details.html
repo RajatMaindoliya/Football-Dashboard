@@ -60,7 +60,7 @@
             </div>
                 
             <div class="row" style="margin-top:20px;">   
-                    <h4>{{ player_details_data.player_name }}</h4>
+                <h4>{{ player_details_data.player_name }}</h4>
             </div>
     
             <div class="row" style="background-color:aquamarine;">
@@ -84,20 +84,63 @@
     
         <div class="col-10" style="margin-left: 20px; background-colour: blue; width: 400px: justify-content: center">
             {% if player_details_data.player_type == "Midfielders" %}
-            <h2>Midfielder Stats</h2>
-            <div class="player-stats">
-                
+            <div class="row" style="justify-content:center; text-align: center; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin:10px;">
+                <div class="players-container">
+                    <p>Total Passes: {{ player_details_data.player_passes }}</p>
+                    <p>Key Passes: {{ player_details_data.player_key_passes }}</p>
+                    <p>Crosses: {{ player_details_data.player_crosses_total }}</p>
+                    <p>Interceptions: {{ player_details_data.player_interceptions }}</p>
+                </div>
+                <div class="players-container" style="border: 5px solid aquamarine">
+                    <p>Match Played: {{ player_details_data.player_match_played }}</p>
+                    <p>Minutes Played: {{ player_details_data.player_minutes }}</p>
+                    <p>Goals: {{ player_details_data.player_goals }}</p>
+                    <p>Assists: {{ player_details_data.player_assists }}</p>
+                </div>
+                <div class="players-container">
+                    <p>Fouls Committed: {{ player_details_data.player_fouls_committed }}</p>
+                    <p>Yellow Cards: {{ player_details_data.player_yellow_cards }}</p>
+                    <p>Red Cards: {{ player_details_data.player_red_cards }}</p>
+                    <p>Injured: {{ player_details_data.player_injured }}</p>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: aquamarine; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); justify-content: center; text-align: center; margin: 10px auto; padding: 10px; margin-top:30px;">
+                <div class="piechart-container">
+                    <h5>Passing Accuracy</h5>
+                    <canvas id="passAccuracyChart" width="400" height="150"></canvas>
+                </div>
+    
+                <div class="piechart-container">
+                    <h5>Shooting Accuracy</h5>
+                    <canvas id="shotAccuracyChart" width="400" height="150"></canvas>
+                </div>
+    
+                <div class="piechart-container">
+                    <h5>Dribbling Success</h5>
+                    <canvas id="dribbleSuccessChart" width="400" height="150"></canvas>
+                </div>
             </div>
 
             {% elif player_details_data.player_type == "Forwards" %}
-            <div class="row">
+            <div class="row" style="justify-content:center; text-align: center; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin:10px;">
                 <div class="players-container">
-                    
-                        <p>Match Played: {{ player_details_data.player_match_played }}</p>
-                        <p>Minutes Played: {{ player_details_data.player_minutes }}</p>
-                        <p>Goals: {{ player_details_data.player_goals }}</p>
-                        <p>Assists: {{ player_details_data.player_assists }}</p>
-                    
+                    <p>Total Shots: {{ player_details_data.player_shots_total }}</p>
+                    <p>Key Passes: {{ player_details_data.player_key_passes }}</p>
+                    <p>Crosses: {{ player_details_data.player_crosses_total }}</p>
+                    <p>Penalties Scored: {{ player_details_data.player_pen_scored }}</p>
+                </div>
+                <div class="players-container" style="border: 5px solid aquamarine">
+                    <p>Match Played: {{ player_details_data.player_match_played }}</p>
+                    <p>Minutes Played: {{ player_details_data.player_minutes }}</p>
+                    <p>Goals: {{ player_details_data.player_goals }}</p>
+                    <p>Assists: {{ player_details_data.player_assists }}</p>
+                </div>
+                <div class="players-container">
+                    <p>Fouls Committed: {{ player_details_data.player_fouls_committed }}</p>
+                    <p>Yellow Cards: {{ player_details_data.player_yellow_cards }}</p>
+                    <p>Red Cards: {{ player_details_data.player_red_cards }}</p>
+                    <p>Injured: {{ player_details_data.player_injured }}</p>
                 </div>
             </div>
 
@@ -116,23 +159,74 @@
                     <h5>Dribbling Success</h5>
                     <canvas id="dribbleSuccessChart" width="400" height="150"></canvas>
                 </div>
-    
+            </div>
+
+            {% elif player_details_data.player_type == "Goalkeepers" %}
+            <div class="row" style="justify-content:center; text-align: center; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin:10px;">
+                <div class="players-container">
+                    <p>Total Passes: {{ player_details_data.player_passes }}</p>
+                    <p>Clearances: {{ player_details_data.player_clearances }}</p>
+                    <p>Saves Inside Box: {{ player_details_data.player_inside_box_saves }}</p>
+                    <p>Interceptions: {{ player_details_data.player_interceptions }}</p>
+                </div>
+                <div class="players-container" style="border: 5px solid aquamarine">
+                    <p>Match Played: {{ player_details_data.player_match_played }}</p>
+                    <p>Minutes Played: {{ player_details_data.player_minutes }}</p>
+                    <p>Saves: {{ player_details_data.player_saves }}</p>
+                    <p>Goals Conceded: {{ player_details_data.player_goals_conceded }}</p>
+                </div>
+                <div class="players-container">
+                    <p>Fouls Committed: {{ player_details_data.player_fouls_committed }}</p>
+                    <p>Yellow Cards: {{ player_details_data.player_yellow_cards }}</p>
+                    <p>Red Cards: {{ player_details_data.player_red_cards }}</p>
+                    <p>Injured: {{ player_details_data.player_injured }}</p>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: aquamarine; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); justify-content: center; text-align: center; margin: 20px auto; padding: 20px; margin-top:30px;">
                 <div class="piechart-container">
                     <h5>Passing Accuracy</h5>
                     <canvas id="passAccuracyChart" width="400" height="150"></canvas>
                 </div>
-            </div>
-
-            {% elif player_details_data.player_type == "Goalkeeper" %}
-            <h2>Goalkeeper Stats</h2>
-            <div class="player-stats">
-            
+    
+                <div class="piechart-container">
+                    <h5>Duels Won</h5>
+                    <canvas id="duelsWonChart" width="400" height="150"></canvas>
+                </div>
             </div>
 
             {% elif player_details_data.player_type == "Defenders" %}
-            <h2>Defender Stats</h2>
-            <div class="player-stats">
-                
+            <div class="row" style="justify-content:center; text-align: center; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin:10px;">
+                <div class="players-container">
+                    <p>Total Passes: {{ player_details_data.player_passes }}</p>
+                    <p>Key Passes: {{ player_details_data.player_key_passes }}</p>
+                    <p>Clearances: {{ player_details_data.player_clearances }}</p>
+                    <p>Interceptions: {{ player_details_data.player_interceptions }}</p>
+                </div>
+                <div class="players-container" style="border: 5px solid aquamarine">
+                    <p>Match Played: {{ player_details_data.player_match_played }}</p>
+                    <p>Minutes Played: {{ player_details_data.player_minutes }}</p>
+                    <p>Tackles: {{ player_details_data.player_tackles }}</p>
+                    <p>Blocks: {{ player_details_data.player_blocks }}</p>
+                </div>
+                <div class="players-container">
+                    <p>Fouls Committed: {{ player_details_data.player_fouls_committed }}</p>
+                    <p>Yellow Cards: {{ player_details_data.player_yellow_cards }}</p>
+                    <p>Red Cards: {{ player_details_data.player_red_cards }}</p>
+                    <p>Injured: {{ player_details_data.player_injured }}</p>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: aquamarine; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); justify-content: center; text-align: center; margin: 20px auto; padding: 20px; margin-top:30px;">
+                <div class="piechart-container">
+                    <h5>Passing Accuracy</h5>
+                    <canvas id="passAccuracyChart" width="400" height="150"></canvas>
+                </div>
+    
+                <div class="piechart-container">
+                    <h5>Duels Won</h5>
+                    <canvas id="duelsWonChart" width="400" height="150"></canvas>
+                </div>
             </div>
 
             {% else %}
@@ -144,7 +238,37 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            //Pie chart for shot accuracy
+            var totalShots = {{ player_details_data.player_shots_total }};
+            var goalsScored = {{ player_details_data.player_goals }};
+            var shotsMissed = totalShots - goalsScored;
+
+            var passesCtx = document.getElementById('shotAccuracyChart').getContext('2d');
+            var passesPieChart = new Chart(passesCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Missed', 'Goals scored'],
+                    datasets: [{
+                        label: 'Amount',
+                        data: [shotsMissed, goalsScored],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Shot Accuracy'
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            
                 //Pie chart for pass accuracy
                 var totalPasses = {{ player_details_data.player_passes }};
                 var accuratePasses = {{ player_details_data.player_passes_accuracy }};
@@ -172,35 +296,10 @@
                         }
                     }
                 });
+        </script>
 
-                //Pie chart for shot accuracy
-                var totalShots = {{ player_details_data.player_shots_total }};
-                var goalsScored = {{ player_details_data.player_goals }};
-                var shotsMissed = totalShots - goalsScored;
 
-                var passesCtx = document.getElementById('shotAccuracyChart').getContext('2d');
-                var passesPieChart = new Chart(passesCtx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Missed', 'Goals scored'],
-                        datasets: [{
-                            label: 'Amount',
-                            data: [shotsMissed, goalsScored],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.5)',
-                                'rgba(54, 162, 235, 0.5)',
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: 'Shot Accuracy'
-                        }
-                    }
-                });
-
+        <script>
                 //Pie chart for Dribbling Success
                 var totalDribbles = {{ player_details_data.player_dribble_attempts }};
                 var successfullDribbles = {{ player_details_data.player_dribble_succ }};
@@ -228,8 +327,37 @@
                         }
                     }
                 });
+        </script>
 
-            });
+
+        <script>
+                //Pie chart for Duels won
+                var totalDuels = {{ player_details_data.player_duels_total }};
+                var duelsWon = {{ player_details_data.player_duels_won }};
+                var duelsLost = totalDuels - duelsWon;
+
+                var passesCtx = document.getElementById('duelsWonChart').getContext('2d');
+                var passesPieChart = new Chart(passesCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Duels Lost', 'Duels Won'],
+                        datasets: [{
+                            label: 'Amount',
+                            data: [duelsLost, duelsWon],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Duels Won'
+                        }
+                    }
+                });
         </script>    
 
 
