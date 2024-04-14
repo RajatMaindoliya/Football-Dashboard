@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 import joblib
 from Predictions.models import FootballPredictor
 import pandas as pd
+from . forms import PredictionForm
 
 today = datetime.today()
 week_ago = today - timedelta(days=7)
@@ -327,7 +328,22 @@ def display_player_stats(request):
     return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
 
 def display_predictions(request):
+    prediction = None
+    if request.method == 'POST':
+        form = PredictionForm(request.POST)
+        if form.is_valid():
+            venue_code = form.cleaned_data['venue_code']
+            opp_team_code = form.cleaned_data['opp_team_code']
+            hour_of_match = form.cleaned_data['hour_of_match']
+            day_of_week = form.cleaned_data['day_of_week']
+            team_code = form.cleaned_data['team_code']
+            
+            predictor = FootballPredictor()
+            team_performance = [venue_code, opp_team_code, hour_of_match, day_of_week, team_code]
+            prediction = predictor.predict_outcome(team_performance)
+    else:
+        form = PredictionForm()
     
-    return render(request, 'Dashboard/predictions.html')
+    return render(request, 'Dashboard/predictions.html', {'form': form, 'prediction': prediction})
 
     

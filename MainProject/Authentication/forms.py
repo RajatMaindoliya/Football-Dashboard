@@ -32,7 +32,7 @@ class CreateUserForm(UserCreationForm):
     team_name = forms.ChoiceField(choices=TEAM_CHOICES)
     
     class Meta:
-        model = CustomUser  # Change User to CustomUser
+        model = CustomUser 
         fields = ['username', 'email', 'password1', 'password2', 'team_name'] 
     
     def __init__(self, *args, **kwargs):

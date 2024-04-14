@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,24 @@
     <title>Predictions</title>
 </head>
 <body>
-    <h1>Match Prediction</h1>
-    <p>The predicted outcome is: {{ prediction }}</p>
+    {% block content %}
+        <h2>Predict a Match</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction is not None %}
+            <h3>Prediction Result</h3>
+            {% if prediction == 0 %}
+                <p>AI Prediction: <img src="{% static 'images/away_team_badge.png' %}" alt="Away Team Badge"> to win</p>
+            {% elif prediction == 1 %}
+                <p>AI Prediction: <img src="{% static 'images/home_team_badge.png' %}" alt="Home Team Badge"> to win</p>
+            {% elif prediction == 2 %}
+                <p>AI Prediction: Draw</p>
+            {% endif %}
+        {% endif %}
+    {% endblock %}
 </body>
 </html>
