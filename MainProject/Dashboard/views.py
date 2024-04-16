@@ -341,9 +341,45 @@ def display_predictions(request):
             predictor = FootballPredictor()
             team_performance = [venue_code, opp_team_code, hour_of_match, day_of_week, team_code]
             prediction = predictor.predict_outcome(team_performance)
+            
+            team_names = {
+                '0': 'Arsenal',
+                '1': 'Aston Villa FC',
+                '2': 'Bournemouth AFC',
+                '3': 'Brentford',
+                '4': 'Brighton & Hove Albion',
+                '5': 'Burnley',
+                '7': 'Chelsea',
+                '8': 'Crystal Palace',
+                '9': 'Everton FC',
+                '10': 'Fulham',
+                '14': 'Liverpool FC',
+                '12': 'Luton Town',
+                '15': 'Manchester City FC',
+                '16': 'Manchester United FC',
+                '17': 'Newcastle United',
+                '19': 'Nottingham Forest',
+                '20': 'Sheffield United',
+                '22': 'Tottenham Hotspur FC',
+                '25': 'West Ham United',
+                '26': 'Wolverhampton Wanderers',
+            }
+            
+            if prediction == 0: #if a loss for your team
+                predicted_winner = team_names[opp_team_code]
+            elif prediction == 1: 
+                predicted_winner = team_names[team_code]
+            else:
+                predicted_winner = 'Draw'
+            
+            context = {
+                'form': form,
+                'prediction': predicted_winner,
+            }
+            return render(request, 'Dashboard/predictions.html', context)
     else:
         form = PredictionForm()
     
-    return render(request, 'Dashboard/predictions.html', {'form': form, 'prediction': prediction})
+    return render(request, 'Dashboard/predictions.html', {'form': form})
 
     
