@@ -173,6 +173,8 @@ h4 {
 
 p {
     color: #555;
+    margin: 2px;
+    font-size:14px;
 }
 
 .team-players-left {
@@ -182,6 +184,8 @@ p {
     justify-content: center;
     text-align: center;
     margin-top: 20px;
+    padding:5px;
+    margin-left:10px;
 }
 
 .team-players-right {
@@ -192,4 +196,5 @@ p {
     text-align: center;
     margin-top: 20px;
     padding: 5px;
+    margin-right: 10px;
 }

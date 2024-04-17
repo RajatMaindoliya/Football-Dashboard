@@ -19,24 +19,24 @@ def display_dashboard(request):
 
     favourite_team = user.team_name
     
-    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     standings_response = requests.get(standings_url)
     standings_data = standings_response.json()
     
-    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-01-05&to="+today_formatted+"&team_id="+favourite_team+"&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-01-05&to="+today_formatted+"&team_id="+favourite_team+"&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     events_response = requests.get(events_url)
     events_data = events_response.json()
     
-    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
     
     top_scorer_player_key = topScorer_data[0]['player_key']
-    topScorerImage_url = "https://apiv3.apifootball.com/?action=get_players&player_id=" + str(top_scorer_player_key) + "&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    topScorerImage_url = "https://apiv3.apifootball.com/?action=get_players&player_id=" + str(top_scorer_player_key) + "&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     topScorerImage_response = requests.get(topScorerImage_url)
     topScorerImage_data = topScorerImage_response.json()
     
-    favouriteTeam_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+favourite_team+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    favouriteTeam_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+favourite_team+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     favouriteTeam_response = requests.get(favouriteTeam_url)
     favouriteTeam_data = favouriteTeam_response.json()
     
@@ -100,7 +100,7 @@ def display_dashboard(request):
 
 def display_stats(request):
     # Make API call to fetch league standings data
-    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     standings_response = requests.get(standings_url)
     standings_data = standings_response.json()
     
@@ -143,12 +143,12 @@ def display_fixtures(request):
     week_ago_formatted = week_ago.strftime("%Y-%m-%d")
 
     # Fetch past matches
-    past_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + week_ago_formatted + "&to=" + today_formatted + "&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    past_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + week_ago_formatted + "&to=" + today_formatted + "&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     past_fixtures_response = requests.get(past_fixtures_url)
     past_fixtures_data = past_fixtures_response.json()
 
     # Fetch upcoming fixtures
-    upcoming_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + today_formatted + "&to=" + (today + timedelta(days=50)).strftime("%Y-%m-%d") + "&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    upcoming_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + today_formatted + "&to=" + (today + timedelta(days=50)).strftime("%Y-%m-%d") + "&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     upcoming_fixtures_response = requests.get(upcoming_fixtures_url)
     upcoming_fixtures_data = upcoming_fixtures_response.json()
     
@@ -204,7 +204,7 @@ def display_fixtures(request):
     return render(request, 'Dashboard/fixtures.html', {'past_fixtures_data': past_fixtures_data, 'upcoming_fixtures_data': upcoming_fixtures_data})
 
 def display_match_details(request, match_id):
-    match_details_url = "https://apiv3.apifootball.com/?action=get_events&match_id="+match_id+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    match_details_url = "https://apiv3.apifootball.com/?action=get_events&match_id="+match_id+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     match_details_response = requests.get(match_details_url)
     match_details_data = match_details_response.json()
     
@@ -287,7 +287,7 @@ def display_match_details(request, match_id):
     home_team_id = match_details_data[0]["match_hometeam_id"]
     away_team_id = match_details_data[0]["match_awayteam_id"]
     
-    h2h_url = "https://apiv3.apifootball.com/?action=get_H2H&firstTeamId="+home_team_id+"&secondTeamId="+away_team_id+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    h2h_url = "https://apiv3.apifootball.com/?action=get_H2H&firstTeamId="+home_team_id+"&secondTeamId="+away_team_id+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     h2h_response = requests.get(h2h_url)
     h2h_data = h2h_response.json()
     
@@ -306,13 +306,13 @@ def display_match_details(request, match_id):
                            'saves': saves})
 
 def display_team_details(request, team_id):
-    team_details_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+team_id+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    team_details_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+team_id+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     team_details_response = requests.get(team_details_url)
     team_details_data = team_details_response.json()
     return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
 
 def display_player_details(request, player_id):
-    player_details_url = "https://apiv3.apifootball.com/?action=get_players&player_id="+player_id+"&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    player_details_url = "https://apiv3.apifootball.com/?action=get_players&player_id="+player_id+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     player_details_response = requests.get(player_details_url)
     player_details_data = player_details_response.json()
     
@@ -321,7 +321,7 @@ def display_player_details(request, player_id):
     return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data})
 
 def display_player_stats(request):
-    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=4f8b1de6e9bc7f5bdd5db3b94221a3c7628cfd7e1f457eac33ecacf6ca91730d"
+    topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
     

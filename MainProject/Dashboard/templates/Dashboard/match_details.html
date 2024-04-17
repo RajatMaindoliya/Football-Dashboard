@@ -59,9 +59,13 @@
                 <div class="team-players-left">
                     <!-- Home Team Players -->
                     <div class="team-players">
-                        <h4 style="margin-top:10px">{{ match_details_data.0.match_hometeam_name }} Players</h4>
+                        <h4 style="margin-top:10px">{{ match_details_data.0.match_hometeam_name }}</h4>
                         <ul>
                             {% for player in match_details_data.0.lineup.home.starting_lineups %}
+                                <p>{{ player.lineup_player }}</p>
+                            {% endfor %}
+                            <h5 style="margin-top:10px">Substitutes</h5>
+                            {% for player in match_details_data.0.lineup.home.substitutes %}
                                 <p>{{ player.lineup_player }}</p>
                             {% endfor %}
                         </ul>
@@ -115,9 +119,13 @@
                 <div class="team-players-right">
                     <!-- Away Team Players -->
                     <div class="team-players">
-                        <h4 style="margin-top:10px">{{ match_details_data.0.match_awayteam_name }} Players</h4>
+                        <h4 style="margin-top:10px;">{{ match_details_data.0.match_awayteam_name }}</h4>
                         <ul>
                             {% for player in match_details_data.0.lineup.away.starting_lineups %}
+                                <p>{{ player.lineup_player }}</p>
+                            {% endfor %}
+                            <h5 style="margin-top:10px">Substitutes</h5>
+                            {% for player in match_details_data.0.lineup.away.substitutes %}
                                 <p>{{ player.lineup_player }}</p>
                             {% endfor %}
                         </ul>
