@@ -66,6 +66,18 @@ main {
   width: 270px;
 }
 
+.AIad {
+  background-color: navy;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 5px solid cyan;
+  padding: 10px;
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 15px;
+  width: 270px;
+}
+
 
 .teams {
   display: flex;
