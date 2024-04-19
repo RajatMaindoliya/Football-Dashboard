@@ -1,7 +1,7 @@
 # Football-Dashboard
 The primary objective of this project is to develop a live football analytics web application with a robust predictive modelling component, leveraging machine learning algorithms to forecast match outcomes.
 
-# Requirements
+## # Requirements
 asgiref==3.7.2
 certifi==2023.11.17
 charset-normalizer==3.3.2
@@ -21,23 +21,23 @@ threadpoolctl==3.4.0
 tzdata==2023.4
 urllib3==2.1.0
 
-# Step 1
+## # Step 1
 Clone the repository:
 > gh repo clone RajatMaindoliya/Football-Dashboard
 
-# Step 2
+## # Step 2
 Create a virtual environment if you wish:
 > python3 -m venv venv
 
-# Step 3 
+## # Step 3 
 Navigate to the MainProject folder:
 > cd MainProject
 
-# Step 4
+## # Step 4
 Apply migrations:
 > python manage.py makemigrations
 > python manage.py migrate
 
-# Step 5
+## # Step 5
 Run the server
 > python manage.py runserver
