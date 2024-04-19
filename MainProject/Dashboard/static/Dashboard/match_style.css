@@ -1,6 +1,6 @@
 header {
     background-color: cyan;
-    padding: 3px 0; /* Add some padding for better spacing */
+    padding: 3px 0;
     z-index: 1000;
     position: fixed;
     top: 0;
@@ -20,24 +20,24 @@ header nav ul {
 }
 
 header nav li {
-    display: inline; /* Instead of floating */
-    margin-right: 10px; /* Add some spacing between menu items */
+    display: inline;
+    margin-right: 10px; 
 }
 
 header nav li:last-child {
-    margin-right: 0; /* Remove margin from the last item */
+    margin-right: 0;
 }
 
 header nav a {
     text-decoration: none;
-    padding: 10px 16px; /* Adjust padding for better spacing */
-    color: #000; /* Change text color */
+    padding: 10px 16px;
+    color: #000;
 }
 
-/* Fix for the navbar color issue */
+
 header nav a:hover {
-    background-color: cyan; /* Match the navbar background color on hover */
-    color: #fff; /* Change text color on hover */
+    background-color: cyan;
+    color: #fff;
 }
 
 main {
@@ -56,9 +56,7 @@ main {
     margin: 10px 0;
   }
 
-/* match_details_style.css */
 
-/* Global Styles */
 body {
     font-family: monospace;
     background-color: #f2f2f2;
@@ -110,7 +108,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Media Query for Responsive Design */
 @media only screen and (max-width: 768px) {
     .match-details {
         flex-direction: column;

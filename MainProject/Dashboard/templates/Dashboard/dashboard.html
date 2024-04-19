@@ -58,6 +58,7 @@
                 <h4 style="margin-top:5px">Latest Match</h4>
             </div>
         
+            <!-- latest match -->
             <div class="row">
                 {% if events_data %}
                 {% with latest_match=events_data|last %}
@@ -87,6 +88,7 @@
                                         <p class="match-status">{{ latest_match.match_date }} - {{ latest_match.match_time }}</p>
                                     {% endif %}
                                 </div>
+                                <!-- predictions gotten from the view -->
                                 {% if latest_match.prediction is not None %}
                                     {% if latest_match.prediction == 0 %}
                                         <p class="prediction">AI Predicted: <img src="{{ latest_match.team_away_badge }}" alt="{{ latest_match.match_away_name }} Badge" style="width:20px; height:20px"> to win</p>
@@ -119,6 +121,7 @@
             <div class="row" style="background-color: cyan; margin:10px; border-radius: 10px;">
                 <h4 style="margin-top: 5px">League table</h4>
             </div>
+            <!-- league table -->
             <div class="row">
                 <div class="league-table-container">
                     <div style="margin-left: 20px; margin-right: 20px">

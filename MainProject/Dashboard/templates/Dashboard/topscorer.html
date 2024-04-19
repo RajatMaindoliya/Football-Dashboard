@@ -98,12 +98,10 @@
 
         
         <script>
-            // Get the data from Django context
             var teamNames = {{ team_names|safe }};
             var goalsForData = {{ goals_for|safe }};
             var goalsAgainstData = {{ goals_against|safe }};
 
-            // Render the chart
             var ctx = document.getElementById('goals-chart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -195,7 +193,6 @@
             var drawsData = {{ draws|safe }};
             var lossesData = {{ losses|safe }};
 
-            // Render the chart
             var ctx = document.getElementById('wins-losses-chart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -244,7 +241,6 @@
             var homeDrawsData = {{ home_draws|safe }};
             var homeLossesData = {{ home_losses|safe }};
 
-            // Render the chart
             var ctx = document.getElementById('home-performance-chart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -293,7 +289,6 @@
             var awayDrawsData = {{ away_draws|safe }};
             var awayLossesData = {{ away_losses|safe }};
 
-            // Render the chart
             var ctx = document.getElementById('away-performance-chart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',

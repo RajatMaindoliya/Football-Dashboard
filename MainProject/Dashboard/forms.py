@@ -1,7 +1,9 @@
 from django import forms
 
+#form for the user to test out the prediction model
 class PredictionForm(forms.Form):
     
+    #mapping each team name to what the model recognizes
     team_choices = [
         ('0', 'Arsenal'),
         ('1', 'Aston Villa FC'),
@@ -25,6 +27,7 @@ class PredictionForm(forms.Form):
         ('26', 'Wolverhampton Wanderers'),     
     ]
     
+    #mapping each hour to what the model recognizes
     hour_choices = [
         ('12', '12:30'),
         ('14', '14:00'),
@@ -45,6 +48,7 @@ class PredictionForm(forms.Form):
         ('20', '20:15'),
     ]
     
+    #mapping each day to what the model recognizes
     day_choices = [
         ('0', 'Monday'),
         ('1', 'Tuesday'),
@@ -55,6 +59,7 @@ class PredictionForm(forms.Form):
         ('6', 'Sunday'),
     ]
     
+    #mapping each venue to what the model recognizes
     venue_choices = [
         ('1', 'Home'),
         ('0', 'Away'),

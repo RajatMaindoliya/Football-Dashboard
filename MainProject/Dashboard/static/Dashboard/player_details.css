@@ -31,24 +31,23 @@ header nav ul {
 }
 
 header nav li {
-    display: inline; /* Instead of floating */
-    margin-right: 10px; /* Add some spacing between menu items */
+    display: inline;
+    margin-right: 10px;
 }
 
 header nav li:last-child {
-    margin-right: 0; /* Remove margin from the last item */
+    margin-right: 0;
 }
 
 header nav a {
     text-decoration: none;
-    padding: 10px 16px; /* Adjust padding for better spacing */
-    color: #000; /* Change text color */
+    padding: 10px 16px; 
+    color: #000;
 }
 
-/* Fix for the navbar color issue */
 header nav a:hover {
-    background-color: cyan; /* Match the navbar background color on hover */
-    color: #fff; /* Change text color on hover */
+    background-color: cyan; 
+    color: #fff;
 }
 
   h4 {

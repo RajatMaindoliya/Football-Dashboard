@@ -5,7 +5,7 @@ from django.forms.widgets import PasswordInput, TextInput
 
 class CreateUserForm(UserCreationForm):
     
-    # Define the choices for teams
+    #team choices for the user to pick from with the IDs that correspond to the API
     TEAM_CHOICES = [
         ('141', 'Arsenal'),
         ('3088', 'Aston Villa FC'),

@@ -13,33 +13,40 @@ week_ago = today - timedelta(days=7)
 week_ago_formatted = week_ago.strftime('%y-%m-%d')
 today_formatted = today.strftime('%y-%m-%d')
 
+#rendering the main dashboard
 @login_required(login_url="login")
 def display_dashboard(request):
     user = request.user
 
     favourite_team = user.team_name
     
+    #API call to display current league table
     standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     standings_response = requests.get(standings_url)
     standings_data = standings_response.json()
     
+    #API call to display the latest match for the user's favourite team
     events_url = "https://apiv3.apifootball.com/?action=get_events&from=2024-01-05&to="+today_formatted+"&team_id="+favourite_team+"&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     events_response = requests.get(events_url)
     events_data = events_response.json()
     
+    #API call to display the leagues top scorer
     topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     topScorer_response = requests.get(topScorer_url)
     topScorer_data = topScorer_response.json()
     
+    #API call to get the top scorers image
     top_scorer_player_key = topScorer_data[0]['player_key']
     topScorerImage_url = "https://apiv3.apifootball.com/?action=get_players&player_id=" + str(top_scorer_player_key) + "&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     topScorerImage_response = requests.get(topScorerImage_url)
     topScorerImage_data = topScorerImage_response.json()
     
+    #API call to display the users favourite team
     favouriteTeam_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+favourite_team+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     favouriteTeam_response = requests.get(favouriteTeam_url)
     favouriteTeam_data = favouriteTeam_response.json()
     
+    #mapping each team code in the API to what the AI model recognizes it as
     team_mapping = {
         "3071": 2,
         "102": 16,
@@ -65,13 +72,15 @@ def display_dashboard(request):
     
     predictor = FootballPredictor()
     
+    #preparing the parameters to be passed into the model
     latest_match = events_data[-1]
     team_id = latest_match["match_hometeam_id"]
     opp_team_id = latest_match["match_awayteam_id"]
     day_of_week = datetime.strptime(latest_match["match_date"], "%Y-%m-%d").weekday()
     hour_of_match = int(latest_match["match_time"].split(":")[0])
-    venue_code = 1
+    venue_code = 1 #this will remain 1 in this case as the home team is always assigned as "your team" to pass into the model
 
+    #using the mapping to get the corresponding values for the model
     team_code = team_mapping.get(team_id)
     opp_team_code = team_mapping.get(opp_team_id)
         
@@ -82,11 +91,10 @@ def display_dashboard(request):
         day_of_week,
         team_code
     ]
-    
-    print(team_performance)
 
     prediction = predictor.predict_outcome(team_performance)
 
+    #added the prediction to latest_match
     latest_match["prediction"] = prediction
      
     return render(request, 'Dashboard/dashboard.html', {
@@ -98,13 +106,14 @@ def display_dashboard(request):
                            'topScorerImage_data': topScorerImage_data})
 
 
+#rendering the team_stats data
 def display_stats(request):
-    # Make API call to fetch league standings data
+    #API call to fetch league standings data
     standings_url = "https://apiv3.apifootball.com/?action=get_standings&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     standings_response = requests.get(standings_url)
     standings_data = standings_response.json()
     
-    # Prepare data for the composite bar chart
+    #Prepare data for the charts and graphs
     team_names = [team['team_name'] for team in standings_data]
     goals_for = [team['overall_league_GF'] for team in standings_data]
     goals_against = [team['overall_league_GA'] for team in standings_data]
@@ -135,19 +144,20 @@ def display_stats(request):
         'away_losses': away_losses,
     })
 
+#render the fixtures page
 def display_fixtures(request):
-    # Calculate dates for past matches and upcoming fixtures
+    #Calculate dates for past matches and upcoming fixtures
     today = datetime.now()
     week_ago = today - timedelta(days=7)
     today_formatted = today.strftime("%Y-%m-%d")
     week_ago_formatted = week_ago.strftime("%Y-%m-%d")
 
-    # Fetch past matches
+    #fetch past matches
     past_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + week_ago_formatted + "&to=" + today_formatted + "&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     past_fixtures_response = requests.get(past_fixtures_url)
     past_fixtures_data = past_fixtures_response.json()
 
-    # Fetch upcoming fixtures
+    #Fetch upcoming fixtures
     upcoming_fixtures_url = "https://apiv3.apifootball.com/?action=get_events&from=" + today_formatted + "&to=" + (today + timedelta(days=50)).strftime("%Y-%m-%d") + "&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     upcoming_fixtures_response = requests.get(upcoming_fixtures_url)
     upcoming_fixtures_data = upcoming_fixtures_response.json()
@@ -178,6 +188,7 @@ def display_fixtures(request):
     
     predictor = FootballPredictor()
     
+    #preparing the parameters and making predictions for each upcoming match
     for fixture in upcoming_fixtures_data:
         team_id = fixture["match_hometeam_id"]
         opp_team_id = fixture["match_awayteam_id"]
@@ -222,6 +233,7 @@ def display_match_details(request, match_id):
     
     
     #I used different for loops and the data provided by the API is not consistent
+    #therefore one empty/faulty api call wont break the others
     for stat in statistics:
         if stat["type"] == "Shots Total":
             total_shots["home"] = stat["home"]
@@ -305,12 +317,14 @@ def display_match_details(request, match_id):
                            'corners': corners,
                            'saves': saves})
 
+#reder the team_details page
 def display_team_details(request, team_id):
     team_details_url = "https://apiv3.apifootball.com/?action=get_teams&team_id="+team_id+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     team_details_response = requests.get(team_details_url)
     team_details_data = team_details_response.json()
     return render(request, 'Dashboard/team_details.html', {'team_details_data': team_details_data})
 
+#render the player_details page
 def display_player_details(request, player_id):
     player_details_url = "https://apiv3.apifootball.com/?action=get_players&player_id="+player_id+"&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     player_details_response = requests.get(player_details_url)
@@ -320,6 +334,7 @@ def display_player_details(request, player_id):
     
     return render(request, 'Dashboard/player_details.html', {'player_details_data': player_details_data})
 
+#rendering the player stats page
 def display_player_stats(request):
     topScorer_url = "https://apiv3.apifootball.com/?action=get_topscorers&league_id=152&APIkey=914cc74bf4d2df76a18517ee040621b1158ccd9d5f10f15679512c190a06472d"
     topScorer_response = requests.get(topScorer_url)
@@ -327,9 +342,11 @@ def display_player_stats(request):
     
     return render(request, 'Dashboard/player_stats.html', {'topScorer_data': topScorer_data})
 
+#rendering the predictions page
 def display_predictions(request):
     prediction = None
     if request.method == 'POST':
+        #retrive the data from the form
         form = PredictionForm(request.POST)
         if form.is_valid():
             venue_code = form.cleaned_data['venue_code']
@@ -367,7 +384,7 @@ def display_predictions(request):
             
             if prediction == 0: #if a loss for your team
                 predicted_winner = team_names[opp_team_code]
-            elif prediction == 1: 
+            elif prediction == 1: #if a win for your team
                 predicted_winner = team_names[team_code]
             else:
                 predicted_winner = 'Draw'

@@ -56,35 +56,29 @@
         <div class="col-2" style="background-color:cyan; border-radius: 10px;">
             <div class="row">
                 <div class="team-logo-container">
-                    <!-- Display Team Logo -->
                     <img src="{{ team_details_data.0.team_badge }}" alt="{{ team_details_data.0.team_name }} Logo" class="team-logo">
                 </div>
             </div>
                 
             <div class="row" style="margin-top:20px;">   
-                    <!-- Display Team Name -->
                     <h4>{{ team_details_data.0.team_name }}</h4>
                 
             </div>
     
             <div class="row" style="background-color:aquamarine;">
                 <div class="col">
-                    <!-- Display Team Country -->
                     <p>Country: {{ team_details_data.0.team_country }}</p>
                 </div>
                 <div class="col">
-                    <!-- Display Team Founded -->
                     <p>Founded: {{ team_details_data.0.team_founded }}</p>
                 </div>
             </div>
     
             <div class="row" style="background-color:aquamarine;">
                 <div class="col">
-                    <!-- Display Venue Name -->
                     <p>Venue: {{ team_details_data.0.venue.venue_name }}</p>
                 </div>
                 <div class="col">
-                    <!-- Display Venue Capacity -->
                     <p>Capacity: {{ team_details_data.0.venue.venue_capacity }}</p>
                 </div>
             </div>
