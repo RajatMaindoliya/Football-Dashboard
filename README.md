@@ -15,7 +15,8 @@ Navigate to the MainProject folder:
 > cd MainProject
 
 ## # Step 4
-pip install -r requirements.txt
+Download all the packages through the requirements file:
+> pip install -r requirements.txt
 
 ## # Step 5
 Apply migrations:
