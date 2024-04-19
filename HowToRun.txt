@@ -1,0 +1,25 @@
+Step 1
+Clone the repository:
+> gh repo clone RajatMaindoliya/Football-Dashboard
+
+Step 2
+Create a virtual environment if you wish:
+> python3 -m venv venv
+> venv\Scripts\activate
+
+Step 3
+Navigate to the MainProject folder:
+> cd MainProject
+
+Step 4
+Download all the packages through the requirements file:
+> pip install -r requirements.txt
+
+Step 5
+Apply migrations:
+> python manage.py makemigrations
+> python manage.py migrate
+
+Step 6
+Run the server
+> python manage.py runserver

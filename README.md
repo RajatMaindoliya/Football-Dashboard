@@ -1,28 +1,4 @@
 # Football-Dashboard
-The primary objective of this project is to develop a live football analytics web application with a robust predictive modelling component, leveraging machine learning algorithms to forecast match outcomes.
+This Project introduces a live web application for football fans of the premier league. The application also provides a match prediction feature implemented using a ML model. The research includes building and testing multiple different ML models such as CNNs, Logistic Regression Models, etc. The accuracy of each model compared, and the best one used for the app. The study includes extensive model development, testing, and selection to identify which the most accurate predictor for future match outcomes. 
 
-## # Step 1
-Clone the repository:
-> gh repo clone RajatMaindoliya/Football-Dashboard
-
-## # Step 2
-Create a virtual environment if you wish:
-> python3 -m venv venv
-> venv\Scripts\activate
-
-## # Step 3
-Navigate to the MainProject folder:
-> cd MainProject
-
-## # Step 4
-Download all the packages through the requirements file:
-> pip install -r requirements.txt
-
-## # Step 5
-Apply migrations:
-> python manage.py makemigrations
-> python manage.py migrate
-
-## # Step 6
-Run the server
-> python manage.py runserver
+The project commences with a concise problem statement, addressing the need for a platform that offers both live updates and predictive analytics for Premier League matches. The objective was to enrich a football fan’s experience by providing all the needs for data for a football fan while also bringing something unique to the table. Key research questions explore the effectiveness of different ML models in match results and aim to identify the model with highest accuracy. 
