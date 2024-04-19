@@ -24,3 +24,20 @@ urllib3==2.1.0
 # Step 1
 Clone the repository:
 > gh repo clone RajatMaindoliya/Football-Dashboard
+
+# Step 2
+Create a virtual environment if you wish:
+> python3 -m venv venv
+
+# Step 3 
+Navigate to the MainProject folder:
+> cd MainProject
+
+# Step 4
+Apply migrations:
+> python manage.py makemigrations
+> python manage.py migrate
+
+# Step 5
+Run the server
+> python manage.py runserver
